@@ -11,13 +11,14 @@ import SelectArea from "../HomeContainer/SelectArea/SelectArea";
 import { StyledBackground } from "../../StyledComponents/StyledBackground";
 import { db } from "../../firebase";
 import ArticleLink from "../../Components/LoadingContainer/ArticleLink/ArticleLink";
+import { ArticleList } from "../ScienceSection/ArticleList";
  
 
 const Title = styled.div`
 margin-top:100px;
 position: relative;
 z-index: 2;
-margin-bottom:2rem;
+margin-bottom:1rem;
 color:white;
 text-align:center;
 font-family: "Kufam", cursive;
@@ -117,14 +118,9 @@ const Info = [
     }
 ]
 
-const PrevInfo = [
-    {
-        title:"Hola",
-        SubHeader:"Aprende el cómo se aprende de esto y del otro y del otro"
-    }
-]
 
 export const ScienceMainContainer = () => {
+    const [TotalList, setTotalList] = useState([])
     const [data, setData] = useState([]);
     const [Loaded, setLoaded] = useState(false)
     useEffect(async () => {
@@ -137,6 +133,17 @@ export const ScienceMainContainer = () => {
                 return {...element.data(), id:id }
             })
             setData(DB)
+            setLoaded(true)
+        })
+
+        const Articles = db.collection("ciencia").doc("articles").collection("data")
+        const TotalArticles = Articles.orderBy("title")
+        TotalArticles.get().then((response) => {
+            const DataBase = response.docs.map(element => {
+                const id = element.id;
+                return {...element.data(), id:id }
+            })
+            setTotalList(DataBase)
             setLoaded(true)
         })
         
@@ -173,15 +180,11 @@ export const ScienceMainContainer = () => {
              </GridContainer>
             <Title>
                 <span>
-                    Para leer y entretenerse:
+                    Para leer y aprender:
                 </span>
             </Title>
            <GridContainer style={{marginBottom:"3rem"}}>
-           {
-                PrevInfo && PrevInfo.map((info, idx) => {
-                    return  <ArticleLink data={info} key={idx}/>
-                })
-            }
+          <ArticleList articles={TotalList}/>
            </GridContainer>
    </>
               </>

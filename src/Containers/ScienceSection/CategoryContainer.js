@@ -25,14 +25,14 @@ span{
 }
 `
 
-export default function ScienceAreaContainer() {
+export default function ScienceCategoryContainer() {
     const [TitleVariation, setTitleVariation] = useState("")
     const [data, setData] = useState([])
     const [Loading, setLoading] = useState(true)
-    const {area } = useParams()
+    const {category } = useParams()
     useEffect(async () => {
         const Collection = db.collection("ciencia").doc("articles").collection("data")
-        const SelectedCollection = Collection.where("area", "==", area) ;
+        const SelectedCollection = Collection.where("category", "==", category) ;
         SelectedCollection.get().then((response) => {
             const BusDB = response.docs.map(element => {
                 const id = element.id;
@@ -42,19 +42,16 @@ export default function ScienceAreaContainer() {
             setLoading(false)
         })
 
-        if(area == "mapas"){
-            setTitleVariation("Mapas")
+        if(category == "basico"){
+            setTitleVariation("Básico")
         }
-        if(area == "naturaleza"){
-            setTitleVariation("Naturaleza")
+        if(category == "intermedio"){
+            setTitleVariation("Intermedio")
         }
-        if(area == "espacio-exterior"){
-            setTitleVariation("Espacio exterior")
+        if(category == "avanzado"){
+            setTitleVariation("Avanzado")
         }
-        if(area == "economia"){
-            setTitleVariation("Economía")
-        }
-    }, [area])
+    }, [category])
     
     return (
         <>
@@ -64,7 +61,7 @@ export default function ScienceAreaContainer() {
              <InitNavBar/> 
              <Head>
                     <span>
-                       Categoria: {TitleVariation}
+                       Ciencias nivel: {TitleVariation}
                     </span>
                 </Head>
                 <motion.div transition={transitionTwoSecs} variants={animationOne} animate="in" exit="out" initial="out">

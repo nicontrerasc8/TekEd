@@ -72,7 +72,7 @@ const InitNavBar = () => {
                 {LinkData.map((data, idx) => {
                return(
                   <MathLi key={idx} className="no-image-link" color={data.color} onClick={ChangeNavUseState}>
-                     <Link to={`/categoria` + data.link}>
+                     <Link to={data.link}>
                        {data.text}
                      </Link>
                   </MathLi>

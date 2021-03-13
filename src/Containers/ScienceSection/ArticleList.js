@@ -1,4 +1,4 @@
-import React from 'react'
+import {useState, useEffect} from 'react'
 import styled from "styled-components"
 import LinkButton from '../../StyledComponents/Button/LinkButton'
 
@@ -17,6 +17,9 @@ h2{
 p{
     margin: 1rem 0;
 }
+span{
+    color: rgb(0,220,240);
+}
 `
 const StyledList = styled.div`
 width: 90vw;
@@ -25,16 +28,31 @@ display: flex;
 flex-wrap:wrap;
 justify-content: center;
 z-index: 3;
-margin-left: 5vw;
-margin-top: 30px;
+margin: 30px 5vw;
 `
 
 const Article = ({article}) => {
+
+    const [CategoryText, setCategoryText] = useState("")
+
+    useEffect(() => {
+        if(article.category == "basico"){
+            setCategoryText("Básico (6 a 7 años)")
+        }
+        if(article.category == "intermedio"){
+            setCategoryText("Intermedio (8 a 9 años)")
+        }
+        if(article.category == "avanzado"){
+            setCategoryText("Avanzado (10 a 11 años)")
+        }
+    }, [])
+
     return<StyledArticle> 
     <h2>
         {article.title}
     </h2>
     <p>{article.SubHeader}</p>
+    <p><span>Dificultad: {CategoryText}</span></p>
     <LinkButton text="Elegir" fontSize="20px" path={"/categoria/ciencia/" + article.area + "/" + article.identification}/>
     </StyledArticle>
 }

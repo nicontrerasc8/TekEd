@@ -6,7 +6,7 @@ import MathAreaContainer from './Containers/MathSection/AreaContainer';
 import ScienceAreaContainer from './Containers/ScienceSection/AreaContainer';
 import LoadingContainer from './Components/LoadingContainer';
 import { ScienceMainContainer } from './Containers/CategoryContainer/ScienceMainContainer';
-import ScienceCategoryContainer from './Containers/ScienceSection/AreaContainer';
+import ScienceCategoryContainer from './Containers/ScienceSection/CategoryContainer';
 import ScienceArticle from './Containers/ScienceSection/Article/Article';
 
 function App() {
@@ -27,6 +27,9 @@ function App() {
        </Route>
        <Route exact path='/categoria/ciencia/:category'>
          <ScienceCategoryContainer/>
+       </Route>
+       <Route exact path="/area/:area">
+         <ScienceAreaContainer/>
        </Route>
        <Route exact path="/categoria/ciencia/:category/:identification">
          <ScienceArticle/>
