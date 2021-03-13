@@ -1,0 +1,169 @@
+*{
+    font-weight: 500;
+}
+nav{
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    z-index: 4;
+    color: white;
+    transition: .3s;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 7vw;    
+}
+.logo{
+    color: rgb(240,240,240);
+    font-size: 40px;
+    font-family: "Fredoka one", cursive;
+}
+.logo span{
+    color: rgb(11,125,179);
+    font-family: "Fredoka one", cursive;
+}
+.nav-btn{
+    background-color: transparent;
+    border: 2px solid rgb(11,125,179);
+    color: rgb(240,240,240);
+    font-size: 16px;
+    width: 150px;
+    padding: 10px;
+    box-shadow: inset 0 0 0 0 rgb(11,125,179);
+    cursor: pointer;
+    transition: .5s;
+    border-radius: 5px;
+    font-family: 'Kufam', cursive;
+}
+.nav-btn:hover{
+    box-shadow: inset 150px 0 0 0 rgb(11,125,179);
+}
+.nav-btn i{
+    padding-left: 10px;
+}
+aside{
+    height: 100vh;
+    width: 300px;
+    position: fixed;
+    top: 0;
+    transition: 1s;
+    right: -300px;
+    z-index: 6;
+    color: rgb(255, 255, 255);
+    background-color: rgb(40, 40, 40);
+}
+aside.active{
+    right: 0;
+  }
+  aside button{
+      margin: 1.5rem 10px 0 20px;
+  }
+.link-section{
+    padding: 10px;
+    margin-top: 1rem;
+    height: 520px;
+}
+h6{
+    font-size: 23px;
+    padding: 1rem 0 0 0 ;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-family: "Kufam", cursive;
+}
+.link-section article{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.link-section article ul{
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    grid-gap: 12px;
+}
+.link-section article ul li{
+    background-size: 100% 100%;
+    width: 100%;
+    border-radius: 5px;
+    padding: 12px;
+}
+img{
+    border-radius: 5px;
+    padding-bottom: 5%;
+    position: relative;
+    bottom: 8px;
+    z-index: -1;
+}
+.link-section a{
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    color: rgb(240,240,240);
+    transition: 1s;
+    font-family: "Kufam", cursive;
+}
+.link-section a:hover{
+    color: rgb(240,240,240);
+}
+.link-section li img{
+    width: 100%;
+    height: 80%;
+}
+.link-section p{
+    position: relative;
+    bottom: 10px;
+}
+@media screen and (max-width:950px){
+    .link-section a{
+        text-align: left;
+        align-items: left;
+        justify-content: left;
+    }
+    .link-section h6{
+        text-align: center;
+        justify-content: center;
+    }
+    main{
+        display: flex;
+        flex-wrap: wrap;
+        grid-gap: 20px;
+    }
+    main span a{
+        padding: 10px;
+    }
+    h6{
+        text-align: center;
+        align-items: center;
+        display: flex;
+    }
+}
+@media screen and (max-width:600px){
+    .link-section a{
+        font-size: 15px;
+    }
+    .nav-btn{
+        font-size: 13px;
+        width: 7rem;
+        padding: 10px 4px;
+    }
+    .nav-btn:hover{
+        box-shadow: inset 7rem 0 0 0 rgb(11,125,179);
+    }
+    .logo{
+        font-size: 2rem;
+    }
+    .link-section{
+        height: unset;
+    }
+    aside{
+        height: 100vh;
+    }
+    .toggle-logo{
+        display: none;
+    }
+}
