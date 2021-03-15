@@ -48,12 +48,9 @@ const HomeContainer = () => {
                   <motion.div initial="out" transition={transitionTwoSecs} animate="in" exit="out" variants={animationOne} className="message">
                      <h3>Aprende como te <span>gusta</span>.</h3>
                      <p style={{marginBottom:"20px"}}>TekEd es una plataforma online donde estudiantes pueden reforzar sus conocimientos y aprender algo nuevo en matemática y ciencias.</p>
-                     
-                     
                      <motion.div initial="out" animate="end" exit="out" variants={animationThree} transition={transitionOneSec}>
-                     <LinkButton callback={showChooseArea} width="230px" text="Empieza dando click aquí"/>
+                     <LinkButton path="/" callback={showChooseArea} width="230px" text="Empieza dando click aquí"/>
                      </motion.div>
-  
                   </motion.div>
                </Container>
             </Landing>

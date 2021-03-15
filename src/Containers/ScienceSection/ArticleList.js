@@ -6,6 +6,10 @@ const StyledArticle = styled.article`
 background-color: rgb(30,30,70);
 color: white;
 text-align: center;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
 margin: 0 1%;
 padding: 20px 5%;
 border-radius: 5px;
@@ -26,6 +30,7 @@ width: 90vw;
 position: relative;
 display: flex;
 flex-wrap:wrap;
+grid-gap: 1rem;
 justify-content: center;
 z-index: 3;
 margin: 30px 5vw;
