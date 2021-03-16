@@ -45,8 +45,8 @@ export default function ScienceAreaContainer() {
         if(area == "mapas"){
             setTitleVariation("Mapas")
         }
-        if(area == "naturaleza"){
-            setTitleVariation("Naturaleza")
+        if(area == "medio-ambiente"){
+            setTitleVariation("Medio ambiente")
         }
         if(area == "espacio-exterior"){
             setTitleVariation("Espacio exterior")

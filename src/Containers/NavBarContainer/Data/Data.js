@@ -10,8 +10,8 @@ export const Links = [
         color: "rgb(235, 120, 13)",
     },
     {
-        text: "Naturaleza",
-        link: "/area/naturaleza",
+        text: "Medio ambiente",
+        link: "/area/medio-ambiente",
         color:"rgb(200, 150, 9)",
     },
     {
