@@ -72,6 +72,42 @@ const Message = ({information}) => {
         {
             information.Paragraph6 && <p>{information.Paragraph6}</p>
         }
+        {
+            information.image7 && <MainImage src={information.image7}/>
+        }
+        {
+            information.Paragraph7 && <p>{information.Paragraph7}</p>
+        }
+          {
+            information.image8 && <MainImage src={information.image8}/>
+        }
+        {
+            information.Paragraph8 && <p>{information.Paragraph8}</p>
+        }
+          {
+            information.image9 && <MainImage src={information.image9}/>
+        }
+        {
+            information.Paragraph9 && <p>{information.Paragraph9}</p>
+        }
+          {
+            information.image10 && <MainImage src={information.image10}/>
+        }
+        {
+            information.Paragraph10 && <p>{information.Paragraph10}</p>
+        }
+          {
+            information.image11 && <MainImage src={information.image11}/>
+        }
+        {
+            information.Paragraph11 && <p>{information.Paragraph11}</p>
+        }
+         {
+            information.image12 && <MainImage src={information.image12}/>
+        }
+        {
+            information.Paragraph12 && <p>{information.Paragraph12}</p>
+        }
      </Div>
     }
 }
