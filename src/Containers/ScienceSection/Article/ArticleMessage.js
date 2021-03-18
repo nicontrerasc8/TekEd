@@ -26,7 +26,7 @@ margin: 0 0 2rem 0;
 const MainImage = styled.img`
 width: clamp(300px, 40%, 40%);
 margin: 2rem 0;
-max-height: 700px;
+max-height: 850px;
 `
 
 const Message = ({information}) => {
