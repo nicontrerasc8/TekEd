@@ -1,3 +1,4 @@
+import {useEffect, useState} from 'react'
 import styled from "styled-components"
 
 const Div = styled.article`
@@ -28,11 +29,109 @@ width: clamp(300px, 40%, 40%);
 margin: 2rem 0;
 max-height: 850px;
 `
+const Quiz = styled.div`
+margin: 3rem 0;
+width: 100%;
+display: flex;
+flex-direction: column;
+align-items: center;
+border-top: 3px solid rgb(20,150,200);
+h6{
+    margin: 1.5rem 0;
+    font-size: 2rem;
+}
+article{
+    width: clamp(320px, 50%, 50%);
+    background-color: rgb(30,30,50);
+    border: 2px solid rgb(20,150,200);
+    padding: 20px 5%;
+    display: flex;
+    flex-direction:column; 
+    border-radius: 5px;
+    text-align: center;
+}
+strong{
+    font-size: 23px;
+}
+`
+const ScoreContainer = styled.div`
+font-size: 2rem;
+margin-bottom: 2rem; 
+`
+const QuestionCounter = styled.div`
+font-size: 2rem;
+padding: 10px 0;
+text-align: center;
+`
+const AnswerSection = styled.div`
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+justify-content: center;
+margin-top:1rem;
+button{
+    color: white;
+    padding: 10px;
+    font-family: "Kufam", cursive;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    margin: 0 10px 10px 10px;
+    transition: .2s;
+    &:hover{
+        background-color: rgb(30,60,100);
+    }
+}
+`
+const QuestionContainer = styled.ul`
+
+`
+const P = styled.h1`
+font-size: 30px;
+`
+const StyledP = styled.p`
+padding-top: 1rem;
+`
 
 const Message = ({information}) => {
 
+    const questions = information.questions
+    const [currentQuestion, setCurrentQuestion] = useState(0);
+	const [showScore, setShowScore] = useState(false)
+    const [showReview, setShowReview] = useState(false)
+	const [score, setScore] = useState(0);
+    const [RightAnswer, setRightAnswer] = useState(false)
+    const nextQuestion = currentQuestion + 1;
+    const RealNumber = questions.length - 1;
+
+
+    const HandleAnswerOptionClick = (isCorrect) => {
+        setShowReview(true)
+        if (isCorrect) {
+			setScore(score + 1);
+            setRightAnswer(true)
+		}
+        if(nextQuestion < questions.length){
+            setCurrentQuestion(nextQuestion)
+        }
+    }
+    const Next = () => {
+        setShowReview(false)
+        setRightAnswer(false)
+        if(nextQuestion === questions.length){
+            setShowScore(true)
+            setRightAnswer(false)
+        }
+    }
+    const ReInit = () => {
+        setCurrentQuestion(0)
+        setScore(0)
+        setShowScore(false)
+        setShowReview(false)
+        setRightAnswer(false)
+    }
+
     if(!information){
-        console.log("No hay")
         return "No hay"
     }
     else{
@@ -109,6 +208,33 @@ const Message = ({information}) => {
         {
             information.Paragraph12 && <p>{information.Paragraph12}</p>
         }
+       <Quiz>
+       <h6>¡Pon a prueba lo aprendido!</h6>
+       <article  style={{backgroundColor: RightAnswer ? "rgb(20,60,60)" : "transparent"}}>
+           <>
+                   <AnswerSection>
+                    {
+                        showReview ? 
+                            <div>{
+                                RightAnswer ? <P>Respuesta correcta</P> : <P>Respuesta incorrecta</P>
+                            }<StyledP>{questions[currentQuestion - 1].Explanation}</StyledP>
+                            {
+                                showScore ? <ScoreContainer>Tu score fue de {score} de {questions.length}</ScoreContainer> : null
+                            } 
+                            {
+                                <button className={showScore ? "ShowScoreButton" : "AnswerButton"} onClick={showScore ? ReInit : Next}>{showScore ? "Reiniciar preguntas" : "Siguiente"}</button>
+                            }
+                            </div>
+                        
+                     : <QuestionContainer><QuestionCounter>Pregunta: {currentQuestion + 1}/{questions.length}</QuestionCounter>
+                       <p>{questions[currentQuestion].questionTitle}</p> {questions[currentQuestion].listOfAnswers.map((answerOption, idx) => {
+                        return <button className="AnswerButton" key={idx} onClick={() => HandleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.text}</button>
+                })}</QuestionContainer>
+                    }
+                   </AnswerSection>
+        </>
+       </article>
+       </Quiz>
      </Div>
     }
 }

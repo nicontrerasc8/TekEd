@@ -33,7 +33,6 @@ const InitNavBar = () => {
 
    const ChangeNavUseState = () => {
       setNavStatus(!navStatus)
-      console.log(navStatus)
    }
    const [LinkData, setLinkData] = useState(Links)
    useEffect(()=>{
