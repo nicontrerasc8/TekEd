@@ -76,7 +76,7 @@ button{
     border-radius: 5px;
     cursor: pointer;
     font-size: 20px;
-    margin: 0 10px 10px 10px;
+    margin: 0 1rem 1rem 1rem;
     transition: .2s;
     &:hover{
         background-color: rgb(30,60,100);
@@ -102,8 +102,10 @@ const Message = ({information}) => {
 	const [score, setScore] = useState(0);
     const [RightAnswer, setRightAnswer] = useState(false)
     const nextQuestion = currentQuestion + 1;
-    const RealNumber = questions.length - 1;
 
+    useEffect(() => {
+        console.log(information.questions)
+    }, [information])
 
     const HandleAnswerOptionClick = (isCorrect) => {
         setShowReview(true)
@@ -211,7 +213,7 @@ const Message = ({information}) => {
        <Quiz>
        <h6>¡Pon a prueba lo aprendido!</h6>
        <article  style={{backgroundColor: RightAnswer ? "rgb(20,60,60)" : "transparent"}}>
-           <>
+   <>
                    <AnswerSection>
                     {
                         showReview ? 
@@ -232,7 +234,7 @@ const Message = ({information}) => {
                 })}</QuestionContainer>
                     }
                    </AnswerSection>
-        </>
+        </> 
        </article>
        </Quiz>
      </Div>

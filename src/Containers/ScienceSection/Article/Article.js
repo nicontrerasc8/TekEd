@@ -49,9 +49,6 @@ const ScienceArticle = () => {
                         setData(message)
                         setLoading(false)
                     }
-                    else{
-                        setLoading(false)
-                    }
                     })
                 }
             })
