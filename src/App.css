@@ -28,6 +28,7 @@ article{
   font-family: "Kufam", cursive;
 }
 button{
+  cursor: pointer;
   border: none;
 }
 .loading-container{
@@ -66,4 +67,12 @@ grid-template-columns:1fr 1fr;
   background: rgb(0,50,100);
   border: 2px solid rgb(20,150,100);
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.math-ex{
+  width: 100%;
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }

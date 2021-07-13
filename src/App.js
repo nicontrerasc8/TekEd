@@ -34,9 +34,9 @@ function App() {
        <Route exact path="/categoria/ciencia/:category/:identification">
          <ScienceArticle/>
        </Route>
-       {/* <Route exact path='/categoria/matematica/:area'>
-         <MathAreaContainer/>
-       </Route> */}
+        <Route exact path="/categoria/matematica">
+          <MathAreaContainer/>  
+        </Route>
      </Switch>
    </Router>
    }</>
