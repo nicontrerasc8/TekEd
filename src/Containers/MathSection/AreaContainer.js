@@ -117,6 +117,7 @@ const MathAreaContainer = () => {
             <StyledBackground/>
             <InitNavBar/>
             <div className="math-ex">
+                <h2>Resuelve</h2>
                 <AdditionContainer/>
             </div>
         </>
