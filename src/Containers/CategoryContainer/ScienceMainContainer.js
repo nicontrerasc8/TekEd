@@ -151,8 +151,7 @@ export const ScienceMainContainer = () => {
     }, [])
     
     return (
-        <>
-           {
+        
               Loaded ?  
               <><StyledBackground/>
               <InitNavBar/>
@@ -189,7 +188,5 @@ export const ScienceMainContainer = () => {
    </>
               </>
               : <LoadingContainer/> 
-           }
-        </> 
     )
 }
