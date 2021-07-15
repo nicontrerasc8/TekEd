@@ -38,8 +38,6 @@ const HomeContainer = () => {
    }
 
    return (
-      <>
-         {
             Loading ? <LoadingContainer/> :  <>
             <InitNavBar/>
             <Landing>
@@ -55,8 +53,6 @@ const HomeContainer = () => {
                </Container>
             </Landing>
             </>
-         }
-      </>
    )
 }
 
