@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import img from "../../Containers/HomeContainer/landing-back.jpg"
+import React from "react"
 
 const StyledDiv = styled.article`
 height: 100vh;

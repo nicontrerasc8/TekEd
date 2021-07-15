@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import "./Home.css"
 import styled from "styled-components";
 import img from "./landing-back.jpg"

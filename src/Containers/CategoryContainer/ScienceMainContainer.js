@@ -151,12 +151,11 @@ export const ScienceMainContainer = () => {
     }, [])
     
     return (
-        
               Loaded ?  
-              <><StyledBackground/>
+              <div><StyledBackground/>
               <InitNavBar/>
               
-   <>
+   <div>
     <Title>
                   <span>
                       Área: ciencia
@@ -185,8 +184,8 @@ export const ScienceMainContainer = () => {
            <GridContainer style={{marginBottom:"3rem"}}>
           <ArticleList articles={TotalList}/>
            </GridContainer>
-   </>
-              </>
+   </div>
+              </div>
               : <LoadingContainer/> 
     )
 }

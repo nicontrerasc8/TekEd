@@ -82,7 +82,7 @@ const Values = [
 
 const AreaContainer = () => {
     return (
-        <>
+        <div>
             <StyledBackground/>
             <InitNavBar/>
             <Div>
@@ -101,7 +101,7 @@ const AreaContainer = () => {
                     }
                 </StyledList>
             </Div>
-        </>
+        </div>
     )
 }
 

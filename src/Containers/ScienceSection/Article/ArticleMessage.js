@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import styled from "styled-components"
 
 const Div = styled.article`
@@ -213,7 +213,7 @@ const Message = ({information}) => {
        <Quiz>
        <h6>¡Pon a prueba lo aprendido!</h6>
        <article  style={{backgroundColor: RightAnswer ? "rgb(20,60,60)" : "transparent"}}>
-   <>
+   <div>
                    <AnswerSection>
                     {
                         showReview ? 
@@ -234,7 +234,7 @@ const Message = ({information}) => {
                 })}</QuestionContainer>
                     }
                    </AnswerSection>
-        </> 
+        </div> 
        </article>
        </Quiz>
      </Div>

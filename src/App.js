@@ -1,6 +1,6 @@
-import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import './App.css';
-import {useState, useEffect} from "react"
+import React,{useState, useEffect} from "react"
 import HomeContainer from './Containers/HomeContainer/HomeContainer';
 import MathAreaContainer from './Containers/MathSection/AreaContainer';
 import ScienceAreaContainer from './Containers/ScienceSection/AreaContainer';

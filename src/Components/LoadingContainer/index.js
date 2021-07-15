@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import React from 'react'
 import { useLoading, ThreeDots } from '@agney/react-loading';
 
 const LoadingContainer = () => {
