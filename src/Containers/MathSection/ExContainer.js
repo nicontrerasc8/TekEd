@@ -221,14 +221,14 @@ const ExContainer = () => {
 const ExAreaContainer = () => {
 
     return (
-        <>
+        <div>
             <StyledBackground/>
             <InitNavBar/>
             <div className="math-ex">
                 <h2>Resuelve</h2>
                 <ExContainer/>
             </div>
-        </>
+        </div>
     )
 }
 
