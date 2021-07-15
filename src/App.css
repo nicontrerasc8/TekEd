@@ -76,3 +76,12 @@ grid-template-columns:1fr 1fr;
   align-items: center;
   justify-content: center;
 }
+.results{
+  top: -100vh;
+  transition: .5s;
+}
+.active-results{
+  top: 0;
+  transition-delay: 1s;
+  transition: .5s;
+}

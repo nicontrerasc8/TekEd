@@ -1,127 +1,108 @@
-import React, { useEffect, useState } from 'react'
-import { StyledBackground } from '../../StyledComponents/StyledBackground'
-import InitNavBar from '../NavBarContainer/NavBarContainer'
+import React from 'react'
 import styled from 'styled-components'
 import LinkButton from '../../StyledComponents/Button/LinkButton'
+import { StyledBackground } from '../../StyledComponents/StyledBackground'
+import InitNavBar from '../NavBarContainer/NavBarContainer'
 
-const Article = styled.article`
+const Div = styled.div`
 position: relative;
+margin-top: 100px;
+color: white;
+font-family: "kufam", cursive;
 display: flex;
 flex-direction: column;
-align-items: center;font-family: "Kufam", cursive;
+align-items: center;
+justify-content: center;
 z-index: 3;
-background-color: rgba(0,0,50,.8);
-color: white;
-border: 3px solid rgb(25,125,179);
-border-radius: 5px;
-padding: 20px;
-width: clamp(320px, 40vw, 40vw);
 text-align: center;
-p{
-    font-size: 20px;
-    padding: 0 0 15px 0;
-}
-h2{
-    font-size: calc(3vh + 3vw + 20px);
-    padding-bottom: 20px;
-}
-input{
-    border: 3px solid rgb(11,125,179);
+span{
+    font-size: 40px;
+    background-color: black;
+    font-weight: 600;
     padding: 10px;
-    color: rgb(179,179,179);
-    margin-bottom: 20px;
-    font-family: "Kufam", cursive;
-    text-align: center;
-    border-radius: 5px;
-    font-weight: 500;
-    font-size: calc(1vw + 1vh + 10px);
-    background-color: rgb(0,0,70);
-    ::placeholder{
-       color: rgb(120,120,120)
-    }
-    ::focus{
-        border-color: rgb(0,0,0)
-    }
-}
-div{
-    padding-top: 20px;
-    display: flex;
-    width: 100%;
-    grid-gap: 10px;
-    align-items: center;
-    justify-content: space-between;
-    button{
-        font-size: 20px;
-        padding: 8px;
-        background: rgb(20,130,180);
-        color: white;
-        font-weight: 600;
-        border-radius: 5px;
-        cursor: pointer
-    }
 }
 `
-const Button = styled.button`
-padding: 10px;
-font-size: 25px;
-background-color: rgb(40,150,200);
-border-radius: 5px;
+const StyledList = styled.div`
+width: 90vw;
+position: relative;
+display: flex;
+flex-wrap:wrap;
+grid-gap: 1rem;
+justify-content: center;
+z-index: 3;
+margin: 30px 5vw;
+`
+
+const StyledArticle = styled.article`
+background-color: rgb(30,30,70);
 color: white;
-font-family: "Kufam", cursive;
+text-align: center;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+margin: 0 1%;
+padding: 20px 5%;
+border-radius: 5px;
+border: 2px solid rgb(20,150,200);
+width: clamp(300px, 30%, 30%);
+h2{
+    font-size: clamp(30px, calc(2vw+2vh+20px), calc(2vw+2vh+20px));
+};
+p{
+    margin: 1rem 0;
+}
+span{
+    color: rgb(0,220,240);
+}
 `
 
-const AdditionContainer = () => {
-    const [Counter, setCounter] = useState(0)
-    const [CounterCorrect, setCounterCorrect] = useState(0)
-    const [Value, setValue] = useState("")
-    const [valor1, setvalor1] = useState(0)
-    const [valor2, setvalor2] = useState(0)
-    const addCorrect = () => {
-        setCounterCorrect(CounterCorrect+1)
-        setCounter(Counter+1)
-    }
-    const CheckAnswer = () => {
-        if(Value == valor1 + valor2){
-            addCorrect()
-        }else{
-            setCounter(Counter+1)
-        } 
-        setValue("")
-    }
-    useEffect(() => {
-        console.log("xd")
-        var v1 = Math.floor(Math.random() * 10 + 1);
-        var v2 = Math.floor(Math.random() * 10 + 1);
-        setvalor1(v1)
-        setvalor2(v2)
-    }, [Counter])
+const Values = [
+    {
+        text: "Sumas",
+        dif: "Desde sumas con números de 1 dígito hasta números de 4 dígitos",
+        path: "sumas"
+    },
+    {
+        text: "Restas",
+        dif: "Desde restas con números de 1 dígito hasta números de 4 dígitos",
+        path: "restas"
+    },
+    {
+        text: "Multiplicaciones",
+        dif: "Desde multiplaciones con números de 1 dígito hasta números de 4 dígitos",
+        path: "multiplicaciones"
+    },
+    {
+        text: "Divisiones",
+        dif: "Desde multiplaciones con números de 1 dígito hasta números de 4 dígitos",
+        path: "divisiones"
+    },
+]
 
-
-    return <Article>
-        <p>Puntacion: {CounterCorrect}/{Counter}</p>
-        <h2>{valor1} + {valor2}</h2>
-        <input placeholder="Escribe aquí tu respuesta" value={Value} onChange={(e) => setValue(e.target.value)}/>
-        <Button onClick={CheckAnswer}>
-            Comprobar
-        </Button>
-        {/* <div>
-        <button>Disminuir dificultad</button>
-        <button>Aumentar dificultad</button>
-        </div> */}
-    </Article>
-}
-
-const MathAreaContainer = () => {
+const AreaContainer = () => {
     return (
         <>
             <StyledBackground/>
             <InitNavBar/>
-            <div className="math-ex">
-                <h2>Resuelve</h2>
-                <AdditionContainer/>
-            </div>
+            <Div>
+                <span>
+                    Juega y practica con matemáticas
+                </span>
+                <StyledList>
+                    {
+                       Values && Values.map((data, idx) => {
+                        return <StyledArticle key={idx}>
+                            <h2>{data.text}</h2>
+                            <p>{data.dif}.</p>
+                            <LinkButton path={"/categoria/matematica/" + data.path} text="Elegir" fontSize="25px"/>
+                        </StyledArticle>
+                    }) 
+                    }
+                </StyledList>
+            </Div>
         </>
     )
 }
 
-export default MathAreaContainer
+export default AreaContainer

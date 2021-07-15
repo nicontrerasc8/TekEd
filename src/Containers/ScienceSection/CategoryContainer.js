@@ -29,7 +29,7 @@ export default function ScienceCategoryContainer() {
     const [TitleVariation, setTitleVariation] = useState("")
     const [data, setData] = useState([])
     const [Loading, setLoading] = useState(true)
-    const {category } = useParams()
+    const {category} = useParams()
     useEffect(async () => {
         const Collection = db.collection("ciencia").doc("articles").collection("data")
         const SelectedCollection = Collection.where("category", "==", category) ;

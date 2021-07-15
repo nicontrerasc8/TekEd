@@ -8,6 +8,7 @@ import LoadingContainer from './Components/LoadingContainer';
 import { ScienceMainContainer } from './Containers/CategoryContainer/ScienceMainContainer';
 import ScienceCategoryContainer from './Containers/ScienceSection/CategoryContainer';
 import ScienceArticle from './Containers/ScienceSection/Article/Article';
+import ExAreaContainer from './Containers/MathSection/ExContainer';
 
 function App() {
   const [Loading, setLoading] = useState(false)
@@ -36,6 +37,9 @@ function App() {
        </Route>
         <Route exact path="/categoria/matematica">
           <MathAreaContainer/>  
+        </Route>
+        <Route exact path="/categoria/matematica/:type">
+          <ExAreaContainer/>
         </Route>
      </Switch>
    </Router>
