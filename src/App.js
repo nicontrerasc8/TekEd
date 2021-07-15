@@ -17,7 +17,7 @@ function App() {
          setLoading(false)
       }, 3000);
   }, [])
-  return <>{
+  return (
      Loading ? <LoadingContainer/> :  <Router>
      <Switch>
        <Route exact path='/'>
@@ -43,7 +43,7 @@ function App() {
         </Route>
      </Switch>
    </Router>
-   }</>
+  )
   ;
 }
 
