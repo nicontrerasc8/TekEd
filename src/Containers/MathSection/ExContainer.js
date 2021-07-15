@@ -187,7 +187,7 @@ const ExContainer = () => {
     }, [Counter])
 
 
-    return <>
+    return <main>
     <ResultsBox className={ShowResults ? "active-results" : "results"}>
         {
             AnsWasCorrect ? 
@@ -215,7 +215,7 @@ const ExContainer = () => {
         <button>Disminuir dificultad</button>
         <button>Aumentar dificultad</button>
         </div> */}
-    </Article> </>
+    </Article> </main>
 }
 
 const ExAreaContainer = () => {
