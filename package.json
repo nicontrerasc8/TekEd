@@ -1,10 +1,9 @@
 {
-  "homepage": "https://nicontrerasc8.github.io/TekEd/",
   "name": "teked",
   "version": "0.1.0",
   "private": true,
   "main": "server.js",
-  "dependencies": {
+  "dependencies": { 
     "@agney/react-loading": "^0.1.2",
     "@material-ui/core": "^4.11.3",
     "@testing-library/jest-dom": "^5.11.9",
@@ -22,8 +21,6 @@
     "web-vitals": "^1.1.0"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
