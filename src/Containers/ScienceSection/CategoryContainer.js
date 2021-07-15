@@ -54,9 +54,9 @@ export default function ScienceCategoryContainer() {
     }, [category])
     
     return (
-        <>
+        <div>
         {
-            Loading ? <LoadingContainer/> : <>
+            Loading ? <LoadingContainer/> : <div>
             <StyledBackground/>
              <InitNavBar/> 
              <Head>
@@ -69,8 +69,8 @@ export default function ScienceCategoryContainer() {
                       <ArticleList articles={data}/>
                    </motion.div>
                 </motion.div>
-            </>
+            </div>
         }
-        </>
+        </div>
     )
 }

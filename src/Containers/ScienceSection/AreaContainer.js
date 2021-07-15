@@ -57,9 +57,9 @@ export default function ScienceAreaContainer() {
     }, [area])
     
     return (
-        <>
+        <div>
         {
-            Loading ? <LoadingContainer/> : <>
+            Loading ? <LoadingContainer/> : <div>
             <StyledBackground/>
              <InitNavBar/> 
              <Head>
@@ -72,8 +72,8 @@ export default function ScienceAreaContainer() {
                       <ArticleList articles={data}/>
                    </motion.div>
                 </motion.div>
-            </>
+            </div>
         }
-        </>
+        </div>
     )
 }

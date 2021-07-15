@@ -38,7 +38,7 @@ const HomeContainer = () => {
    }
 
    return (
-            Loading ? <LoadingContainer/> :  <>
+            Loading ? <LoadingContainer/> :  <div>
             <InitNavBar/>
             <Landing>
             <SelectArea setAvailable={ChooseArea} change={showChooseArea}/>
@@ -52,7 +52,7 @@ const HomeContainer = () => {
                   </motion.div>
                </Container>
             </Landing>
-            </>
+            </div>
    )
 }
 

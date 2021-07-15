@@ -48,7 +48,7 @@ const InitNavBar = () => {
 
   }, [])
 
-   return ( <>
+   return ( <div>
       <Nav solid={navSolidColor}>
          <Link to="/">
          <h1 className="logo">Tek<span>Ed</span></h1>
@@ -82,7 +82,7 @@ const InitNavBar = () => {
          </article>
       </div>
       </aside>
-      </>
+      </div>
    )
 }
 

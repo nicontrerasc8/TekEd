@@ -56,7 +56,7 @@ const ScienceArticle = () => {
         fetchData()
     }, [identification])
 
-    return <>
+    return <div>
            {
                loading ? 
                <LoadingContainer/> :
@@ -65,7 +65,7 @@ const ScienceArticle = () => {
               <Message information={data}/>
               </Container>
            } 
-        </>
+        </div>
 }
 
 export default ScienceArticle
