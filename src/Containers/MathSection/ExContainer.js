@@ -2,8 +2,50 @@ import React, { useEffect, useState, useRef } from 'react'
 import { StyledBackground } from '../../StyledComponents/StyledBackground'
 import InitNavBar from '../NavBarContainer/NavBarContainer'
 import styled from 'styled-components'
-import LinkButton from '../../StyledComponents/Button/LinkButton'
 import { useParams } from 'react-router-dom'
+import useAppContext from '../../Context/AppContext'
+
+const ChooseDiv = styled.div`
+position: fixed;
+    z-index: 20;
+    top: 0;
+    left:0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(30,30,60);
+    display: flex;
+    align-items: center;
+    color: white;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    font-family: "Kufam", cursive;
+    padding: 20px;
+    div{
+        display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: clamp(320px, 50vw, 60vw);
+    border: 3px solid rgb(30,100,200);
+    padding: 20px;
+    border-radius: 5px;
+    justify-content: center;
+        h2{
+            font-size: clamp(30px, calc(2vw+2vh+5px), calc(2vw+2vh+5px));
+        }
+        button{
+            margin-top: 20px;
+            padding: 10px;
+            font-family: "Kufam", cursive;
+            width: 180px;
+            font-size: 19px;
+            color: white;
+            background-color: rgb(30,100,200);
+            border-radius: 5px;
+            border: 3px solid;
+        }
+    }
+`
 
 const ResultsBox = styled.div`
     position: fixed;
@@ -17,6 +59,7 @@ const ResultsBox = styled.div`
     align-items: center;
     color: white;
     justify-content: center;
+    font-family: "Kufam", cursive;
     padding: 20px;
     div{
         width: clamp(320px, 50vw, 60vw);
@@ -102,9 +145,10 @@ div{
     button{
         font-size: 20px;
         padding: 8px;
-        background: rgb(20,130,180);
+        background: rgb(130,40,180);
         color: white;
         font-weight: 600;
+        font-family: "Kufam", cursive;
         border-radius: 5px;
         cursor: pointer
     }
@@ -132,6 +176,13 @@ const ExContainer = () => {
     const [Operator, setOperator] = useState("")
     const {type} = useParams()
     const inputRef = useRef(null);
+    const [InvalidateHarder, setInvalidateHarder] = useState(false)
+    const [InvalidateSofter, setInvalidateSofter] = useState(false)
+    const {SumLevel, setSumLevel, 
+        SubstractLevel, setSubstractLevel, 
+        MulLevel, setMulLevel, 
+        DivLevel, setDivLevel} = useAppContext()
+        const [ChooseLevel, setChooseLevel] = useState(false)
 
     const addCorrect = () => {
         setCounterCorrect(CounterCorrect+1)
@@ -144,6 +195,38 @@ const ExContainer = () => {
         setShowResults(false)
         setValue("")
     }
+    const SetLevel = (param) => {
+        if(type === "sumas"){
+            setSumLevel(param)
+        }
+        if(type === "restas"){
+            setSubstractLevel(param)
+        }
+        if(type === "multiplicaciones"){
+            setMulLevel(param)
+        }
+        if(type === "divisiones"){
+            setDivLevel(param)
+        }
+        setChooseLevel(false)
+    }
+
+    const ChangeLevel = (param) => {
+        if(type === "sumas"){
+            setSumLevel(SumLevel + param)
+            console.log(SumLevel)
+        }
+        if(type === "restas"){
+            setSubstractLevel(SubstractLevel + param)
+        }
+        if(type === "multiplicaciones"){
+            setMulLevel(MulLevel + param)
+        }
+        if(type === "divisiones"){
+            setDivLevel(DivLevel + param)
+        }
+    }
+    
     const CheckAnswer = () => {
         if (Value === "") {
             alert("Escribe tu respuesta para luego comprobarla")
@@ -161,33 +244,212 @@ const ExContainer = () => {
             }, 200);    
         }
     }
+        
     useEffect(() => {
-        var v1 = Math.floor(Math.random() * 9 + 2);
-        var v2 = Math.floor(Math.random() * 9 + 2);
         if(type === "sumas"){
+            var v1 = Math.floor(Math.random() * Math.pow(10, SumLevel) + 1);
+            if (SumLevel === 2 && v1 < 10){
+                v1 += 10;
+            }
+            if (SumLevel === 3 && v1 < 100){
+                v1 += 100;
+            }
+            if (SumLevel === 4 && v1 < 1000){
+                v1 += 1000;
+            }
+            var v2 = Math.floor(Math.random() * Math.pow(10, SumLevel) + 1);
+            if (SumLevel === 2 && v2 < 10){
+                v2 += 10;
+            }
+            if (SumLevel === 3 && v2 < 100){
+                v2 += 100;
+            }
+            if (SumLevel === 4 && v2 < 1000){
+                v2 += 1000;
+            }
             var result = v1+v2
             setOperator("+")
+            if (SumLevel === null){
+                setChooseLevel(true)
+            }else {
+                setChooseLevel(false)
+            }
+
+
+            if (SumLevel === 1){
+                setInvalidateSofter(true)
+            }
+            else{
+                setInvalidateSofter(false)
+            }
+
+
+            if(SumLevel === 4){
+                setInvalidateHarder(true)
+            }
+            else{
+                setInvalidateHarder(false)
+            }
         }
         if(type === "restas"){
+            var v1 = Math.floor(Math.random() * Math.pow(10, SubstractLevel) + 1);
+            if (SubstractLevel === 2 && v1 < 10){
+                v1 += 10;
+            }
+            if (SubstractLevel === 3 && v1 < 100){
+                v1 += 100;
+            }
+            if (SubstractLevel === 4 && v1 < 1000){
+                v1 += 1000;
+            }
+            var v2 = Math.floor(Math.random() * Math.pow(10, SubstractLevel) + 1);
+            if (SubstractLevel === 2 && v2 < 10){
+                v2 += 10;
+            }
+            if (SubstractLevel === 3 && v2 < 100){
+                v2 += 100;
+            }
+            if (SubstractLevel === 4 && v2 < 1000){
+                v2 += 1000;
+            }
+            if (v1 < v2){
+                var aux = v1;
+                v1 = v2
+                v2 = aux
+            }
             var result = v1-v2
             setOperator("-")
+            if (SubstractLevel === null){
+                setChooseLevel(true)
+            }else {
+                setChooseLevel(false)
+            }
+
+
+            if (SubstractLevel === 1){
+                setInvalidateSofter(true)
+            }
+            else{
+                setInvalidateSofter(false)
+            }
+
+
+            if (SubstractLevel === 4){
+                setInvalidateHarder(true)
+            }
+            else{
+                setInvalidateHarder(false)
+            }
         }
         if(type === "multiplicaciones"){
+            var v1 = Math.floor(Math.random() * Math.pow(10, MulLevel) + 1);
+            if (MulLevel === 2 && v1 < 10){
+                v1 += 10;
+            }
+            if (MulLevel === 3 && v1 < 100){
+                v1 += 100;
+            }
+            if (MulLevel === 4 && v1 < 1000){
+                v1 += 1000;
+            }
+            var v2 = Math.floor(Math.random() * Math.pow(10, MulLevel) + 1);
+            if (MulLevel === 2 && v2 < 10){
+                v2 += 10;
+            }
+            if (MulLevel === 3 && v2 < 100){
+                v2 += 100;
+            }
+            if (MulLevel === 4 && v2 < 1000){
+                v2 += 1000;
+            }
             var result = v1*v2
             setOperator("x")
+            if (MulLevel === null){
+                setChooseLevel(true)
+            }else {
+                setChooseLevel(false)
+            }
+
+
+            if (MulLevel === 1){
+                setInvalidateSofter(true)
+            }
+            else{
+                setInvalidateSofter(false)
+            }
+
+
+            if (MulLevel === 4){
+                setInvalidateHarder(true)
+            }
+            else{
+                setInvalidateHarder(false)
+            }
         }
         if(type === "divisiones") {
+            var v1 = Math.floor(Math.random() * Math.pow(10, DivLevel) + 1);
+            if (DivLevel === 2 && v1 < 10){
+                v1 += 10;
+            }
+            if (DivLevel === 3 && v1 < 100){
+                v1 += 100;
+            }
+            if (DivLevel === 4 && v1 < 1000){
+                v1 += 1000;
+            }
+            var v2 = Math.floor(Math.random() * Math.pow(10, DivLevel) + 1);
+            if (DivLevel === 2 && v2 < 10){
+                v2 += 10;
+            }
+            if (DivLevel === 3 && v2 < 100){
+                v2 += 100;
+            }
+            if (DivLevel === 4 && v2 < 1000){
+                v2 += 1000;
+            }
             var result = v1/v2
             setOperator("÷")
+            if (DivLevel === null){
+                setChooseLevel(true)
+            }else {
+                setChooseLevel(false)
+            }
+
+
+            if (DivLevel === 1){
+                setInvalidateSofter(true)
+            }
+            else{
+                setInvalidateSofter(false)
+            }
+
+
+            if(DivLevel === 4){
+                setInvalidateHarder(true)
+            }
+            else{
+                setInvalidateHarder(false)
+            }
         }
         setvalor1(v1)
         setvalor2(v2)
         setFinalResult(result)
         inputRef.current.focus()
-    }, [Counter])
+    }, [Counter, ChooseLevel, SumLevel, SubstractLevel, MulLevel, DivLevel])
 
 
     return <main>
+        {
+            ChooseLevel && <ChooseDiv>
+                <div>
+                <h2>Elige la cantidad de dígitos con los que quieres realizar las {type}</h2>
+                <button onClick={() => SetLevel(1)}>Un dígito</button>
+                <button onClick={() => SetLevel(2)}>Dos dígitos</button>
+                <button onClick={() => SetLevel(3)}>Tres dígitos</button>
+                <button onClick={() => SetLevel(4)}>Cuatro dígitos</button>
+                </div>
+            </ChooseDiv>
+        }
     <ResultsBox className={ShowResults ? "active-results" : "results"}>
         {
             AnsWasCorrect ? 
@@ -207,14 +469,14 @@ const ExContainer = () => {
     <Article>
         <p>Puntacion: {CounterCorrect}/{Counter}</p>
         <h2>{valor1} {Operator} {valor2}</h2>
-        <input ref={inputRef} placeholder="Escribe aquí tu respuesta" value={Value} onChange={(e) => setValue(e.target.value)}/>
+        <input autoComplete="off" ref={inputRef} placeholder="Escribe aquí tu respuesta" value={Value} onChange={(e) => setValue(e.target.value)}/>
         <Button onClick={CheckAnswer}>
             Comprobar
         </Button>
-        {/* <div>
-        <button>Disminuir dificultad</button>
-        <button>Aumentar dificultad</button>
-        </div> */}
+        <div>
+        <button disabled={InvalidateSofter} onClick={() => ChangeLevel(-1)}>Disminuir dificultad</button>
+        <button disabled={InvalidateHarder} onClick={() => ChangeLevel(1)}>Aumentar dificultad</button>
+        </div>
     </Article> </main>
 }
 

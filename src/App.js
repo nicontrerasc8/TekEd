@@ -1,6 +1,6 @@
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import './App.css';
-import React,{useState, useEffect} from "react"
+import React from "react"
 import HomeContainer from './Containers/HomeContainer/HomeContainer';
 import MathAreaContainer from './Containers/MathSection/AreaContainer';
 import ScienceAreaContainer from './Containers/ScienceSection/AreaContainer';
@@ -9,16 +9,12 @@ import { ScienceMainContainer } from './Containers/CategoryContainer/ScienceMain
 import ScienceCategoryContainer from './Containers/ScienceSection/CategoryContainer';
 import ScienceArticle from './Containers/ScienceSection/Article/Article';
 import ExAreaContainer from './Containers/MathSection/ExContainer';
+import { AppContextProvider } from './Context/AppContext';
 
 function App() {
-  const [Loading, setLoading] = useState(false)
-  useEffect(() => {
-      setTimeout(() => {
-         setLoading(false)
-      }, 3000);
-  }, [])
   return (
-     Loading ? <LoadingContainer/> :  <Router>
+     <AppContextProvider>
+      <Router>
      <Switch>
        <Route exact path='/'>
          <HomeContainer/>
@@ -43,6 +39,7 @@ function App() {
         </Route>
      </Switch>
    </Router>
+     </AppContextProvider>
   )
   ;
 }

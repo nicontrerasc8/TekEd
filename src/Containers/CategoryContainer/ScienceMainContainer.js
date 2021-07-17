@@ -1,16 +1,13 @@
 import styled from "styled-components"
-import React, { useState, useContext, useEffect, useCallback, useMemo } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect} from 'react';
 import "./style.css"
 import InitNavBar from '../NavBarContainer/NavBarContainer';
 import {motion} from "framer-motion"
 import LinkButton from "../../StyledComponents/Button/LinkButton"
 import LoadingContainer from "../../Components/LoadingContainer";
-import { animationOne, animationTwo, animationThree, transitionOneSec, transitionTwoSecs } from "../../animations";
 import SelectArea from "../HomeContainer/SelectArea/SelectArea";
 import { StyledBackground } from "../../StyledComponents/StyledBackground";
 import { db } from "../../firebase";
-import ArticleLink from "../../Components/LoadingContainer/ArticleLink/ArticleLink";
 import { ArticleList } from "../ScienceSection/ArticleList";
  
 

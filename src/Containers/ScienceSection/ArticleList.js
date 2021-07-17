@@ -41,13 +41,13 @@ const Article = ({article}) => {
     const [CategoryText, setCategoryText] = useState("")
 
     useEffect(() => {
-        if(article.category == "basico"){
+        if(article.category === "basico"){
             setCategoryText("Básico (6 a 7 años)")
         }
-        if(article.category == "intermedio"){
+        if(article.category === "intermedio"){
             setCategoryText("Intermedio (8 a 9 años)")
         }
-        if(article.category == "avanzado"){
+        if(article.category === "avanzado"){
             setCategoryText("Avanzado (10 a 11 años)")
         }
     }, [])

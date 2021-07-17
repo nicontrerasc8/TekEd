@@ -85,3 +85,7 @@ grid-template-columns:1fr 1fr;
   transition-delay: 1s;
   transition: .5s;
 }
+
+button:disabled{
+  opacity: .5;
+}

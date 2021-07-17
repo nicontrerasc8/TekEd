@@ -1,13 +1,12 @@
 import React,{useState, useEffect} from 'react'
-import { useHistory, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import styled from "styled-components"
 import LoadingContainer from '../../../Components/LoadingContainer'
 import { db } from '../../../firebase'
-import { StyledBackground } from '../../../StyledComponents/StyledBackground'
 import InitNavBar from '../../NavBarContainer/NavBarContainer'
 import Message from './ArticleMessage'
 
-const Head = styled.h2`
+/* const Head = styled.h2`
 margin-top: 100px;
 position:relative;
 padding: 20px 10vw 0 10vw;
@@ -20,7 +19,7 @@ span{
     background-color: rgb(20,20,20);
     padding:5px;
 }
-`
+` */
 const Container = styled.div`
 padding: 0rem 5vw;
 `

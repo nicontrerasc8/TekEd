@@ -31,7 +31,7 @@ h3{
     margin-bottom:10px;
     font-size: clamp(20px, 2rem, 4vw);
     padding:5px;
-    border: 2px solid rgb(100,125,179);
+    border: 2px solid;
     border-radius: 5px;
 }
 p{
@@ -65,7 +65,7 @@ const SelectArea = ({setAvailable, change}) => {
     <p>
         Aprende a utilizar los números <br/> para descubrir la realidad.
     </p>
-    <LinkButton text="Ir allá" path="/categoria/matematica" ButtonColor="rgb(20, 180, 100);" width="110px"/>
+    <LinkButton text="Ir allá" path="/categoria/matematica" width="110px"/>
 </div>
 <div>
     <h3>
@@ -74,7 +74,7 @@ const SelectArea = ({setAvailable, change}) => {
     <p>
         Conoce más del mundo en el que <br/> vivimos.
     </p>
-    <LinkButton text="Ir allá" path="/categoria/ciencia" ButtonColor="rgb(100, 8, 180);" width="110px"/>
+    <LinkButton text="Ir allá" path="/categoria/ciencia"  width="110px"/>
 </div>
           </div>
           </Choose>
