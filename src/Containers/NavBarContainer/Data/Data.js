@@ -19,9 +19,4 @@ export const Links = [
         link: "/area/espacio-exterior",
         color:"rgb(14, 197, 8)",
     },
-    {
-        text: "Economía",
-        link: "/area/economia",
-        color:"rgb(147, 13, 224)",
-    },
 ]
