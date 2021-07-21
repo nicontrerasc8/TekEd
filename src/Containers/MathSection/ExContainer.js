@@ -402,25 +402,30 @@ const ExContainer = () => {
             }
         }
         if(type === "divisiones") {
-            var v1 = Math.floor(Math.random() * Math.pow(10, DivLevel) + 1);
-            if (DivLevel === 2 && v1 < 10){
-                v1 += 10;
-            }
-            if (DivLevel === 3 && v1 < 100){
-                v1 += 100;
-            }
-            if (DivLevel === 4 && v1 < 1000){
-                v1 += 1000;
-            }
-            var v2 = Math.floor(Math.random() * Math.pow(10, DivLevel) + 1);
-            if (DivLevel === 2 && v2 < 10){
-                v2 += 10;
-            }
-            if (DivLevel === 3 && v2 < 100){
-                v2 += 100;
-            }
-            if (DivLevel === 4 && v2 < 1000){
-                v2 += 1000;
+            do {
+                var v1 = Math.floor(Math.random() * Math.pow(10, DivLevel) + 2);
+                if (DivLevel === 2 && v1 < 10){
+                    v1 += 10;
+                }
+                if (DivLevel === 3 && v1 < 100){
+                    v1 += 100;
+                }
+                if (DivLevel === 4 && v1 < 1000){
+                    v1 += 1000;
+                }
+                var v2 = Math.floor(Math.random() * Math.pow(10, DivLevel) + 2);
+                if (DivLevel === 2 && v2 < 10){
+                    v2 += 10;
+                }
+                if (DivLevel === 3 && v2 < 100){
+                    v2 += 100;
+                }
+                if (DivLevel === 4 && v2 < 1000){
+                    v2 += 1000;
+                }
+            } while (v1 % v2 != 0);
+            if (v1 === v2){
+                v2 = v1/2
             }
             var result = v1/v2
             setOperator("÷")
