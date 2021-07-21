@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import img from "../../Containers/HomeContainer/landing-back.jpg"
+import img from "../../Containers/HomeContainer/LandingBackground.png"
 import React from "react"
 
 const StyledDiv = styled.article`

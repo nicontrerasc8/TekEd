@@ -12,20 +12,18 @@
     opacity: 0;
   }
 .message{
-    background-color: rgb(12, 12, 12);
+    background-color: #274C90;
     padding: 30px;
+    border: 3px solid #b6fbfb83;
     border-radius: 10px;
     text-align: center;
-    width: clamp(30rem, 600px, 800px);
+    width: clamp(320px, 60vw, 60vw);
     margin-top: 70px;
 }
 .message h3{
-    font-size: 40px;
-}
-.message h3 span{
-    border: 2px solid rgb(11,125,179);
-    border-radius: 5px;
+    font-size: clamp(40px, calc(4vw+4vh), calc(4vw+4vh));
 }
 .message p{
     margin-top: 20px;
+    font-size: clamp(17px, calc(1vw + 1vh), calc(1vw + 1vh));
 }

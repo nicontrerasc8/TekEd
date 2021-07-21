@@ -8,18 +8,18 @@ import { rgbToHex } from '@material-ui/core';
 
 // Styled component named StyledButton
 const Nav = styled.nav`
-background-color: ${props => props.solid ? "rgb(36,36,36)" : "rgba(36, 36, 36, .8)"};
+background-color: ${props => props.solid ? "#274C90" : "#305cae"};
 
 `
 const MathLi = styled.li `
-color: ${props => props.color ? props.color : "rgb(11,125,179)"};
-border: 2px solid ${props => props.color ? props.color : "rgb(11,125,179)"};
+color: ${props => props.color ? props.color : "#305cae"};
+border: 2px solid ${props => props.color ? props.color : "#305cae"};
 text-align: center;
 transition: 1s;
-box-shadow: inset 0 0 0 0 ${props => props.color ? props.color : "rgb(11,125,179)"};
+box-shadow: inset 0 0 0 0 ${props => props.color ? props.color : "#305cae"};
 background-color:rgba(250,250,250, .05);
 &:hover{
-   box-shadow: inset 0 0 2px 5px ${props => props.color ? props.color : "rgb(11,125,179)"}
+   box-shadow: inset 0 0 2px 5px ${props => props.color ? props.color : "#305cae"}
 };a{
    text-align: center;
 }
@@ -53,9 +53,9 @@ const InitNavBar = () => {
          <Link to="/">
          <h1 className="logo">Tek<span>Ed</span></h1>
          </Link>
-         <button onClick={ChangeNavUseState} className="nav-btn">
+        {/*  <button onClick={ChangeNavUseState} className="nav-btn">
             Elige un área
-         </button>
+         </button> */}
       </Nav>
       <aside className={navStatus ? "active": null}>
       <button onClick={ChangeNavUseState} className="nav-btn">

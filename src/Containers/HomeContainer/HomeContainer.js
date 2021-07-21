@@ -1,8 +1,9 @@
 import React,{useEffect, useState} from 'react'
 import "./Home.css"
 import styled from "styled-components";
-import img from "./landing-back.jpg"
+import img from "./LandingBackground.png"
 import {motion} from "framer-motion"
+import Typewriter from "typewriter-effect"
 import SelectArea from "./SelectArea/SelectArea"
 import { animationOne, animationThree, animationTwo, transitionTwoSecs, transitionOneSec } from '../../animations';
 import LinkButton from '../../StyledComponents/Button/LinkButton';
@@ -21,9 +22,7 @@ color: white;
 grid-gap: 10px;
 height: 100%;
 font-family: "Kufam", cursive;
-background-color: rgba(10, 10, 10, 0.349);`
-
-
+`
 const HomeContainer = () => {
 
    const [ChooseArea, setChooseArea] = useState(false)
@@ -41,13 +40,18 @@ const HomeContainer = () => {
             Loading ? <LoadingContainer/> :  <div>
             <InitNavBar/>
             <Landing>
-            <SelectArea setAvailable={ChooseArea} change={showChooseArea}/>
+            {/* <SelectArea setAvailable={ChooseArea} change={showChooseArea}/> */}
                <Container>
                   <motion.div initial="out" transition={transitionTwoSecs} animate="in" exit="out" variants={animationOne} className="message">
-                     <h3>Aprende como te <span>gusta</span>.</h3>
-                     <p style={{marginBottom:"20px"}}>TekEd es una plataforma online donde estudiantes pueden reforzar sus conocimientos y aprender algo nuevo en matemática y ciencias.</p>
+                     <h3>Aprende matemáticas <br/> <Typewriter options={{
+                        strings:["a tu propio ritmo.", "practicando ejercicios."],
+                        autoStart:true,
+                        loop:true,
+                        delay:100
+                     }}/></h3>
+                     <p style={{marginBottom:"20px"}}>TekEd es una plataforma online donde estudiantes pueden reforzar sus conocimientos y aprender algo nuevo en matemáticas.</p>
                      <motion.div initial="out" animate="end" exit="out" variants={animationThree} transition={transitionOneSec}>
-                     <LinkButton path="/" callback={showChooseArea} width="230px" text="Empieza dando click aquí"/>
+                     <LinkButton path="/matematica" /* callback={showChooseArea} */ fontSize="calc(10px + 1vh)" width="260px" text="Empieza dando click aquí"/>
                      </motion.div>
                   </motion.div>
                </Container>

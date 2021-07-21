@@ -12,7 +12,7 @@ position: fixed;
     left:0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(30,30,60);
+    background-color: #305cae;
     display: flex;
     align-items: center;
     color: white;
@@ -20,29 +20,34 @@ position: fixed;
     flex-direction: column;
     justify-content: center;
     font-family: "Kufam", cursive;
-    padding: 20px;
+    padding: 20px 8vw;
     div{
+        position: relative;
+        z-index: 30;
         display: flex;
     align-items: center;
+    background-color: #305cae;
     flex-direction: column;
-    width: clamp(320px, 50vw, 60vw);
-    border: 3px solid rgb(30,100,200);
     padding: 20px;
     border-radius: 5px;
     justify-content: center;
         h2{
-            font-size: clamp(30px, calc(2vw+2vh+5px), calc(2vw+2vh+5px));
+            background-color: #305cae;
+            font-size: clamp(25px, calc(2vw + 1vh), calc(2vw + 2vh));
         }
         button{
             margin-top: 20px;
             padding: 10px;
+            width: 100%;
             font-family: "Kufam", cursive;
-            width: 180px;
-            font-size: 19px;
+            background-color: #b6fbfb83;
+            font-size: clamp(25px, calc(1vw + 1vh + 10px), calc(1vw + 1vh + 10px));
             color: white;
-            background-color: rgb(30,100,200);
             border-radius: 5px;
-            border: 3px solid;
+            transition: 1s;
+            &:hover{
+                background-color: #7ad4d4;
+            }
         }
     }
 `
@@ -53,7 +58,7 @@ const ResultsBox = styled.div`
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(30,30,60,.95);
+    background-color: #305cae;
     transtion: 1s ease;
     display: flex;
     align-items: center;
@@ -63,9 +68,9 @@ const ResultsBox = styled.div`
     padding: 20px;
     div{
         width: clamp(320px, 50vw, 60vw);
-        background-color: rgba(0,0,50,.8);
+        background-color: #305cae;
         padding: 20px 5%;
-        border: 4px solid rgb(30,150,200);
+        border: 4px dashed #b6fbfb83;
         border-radius: 5px;
         display: flex;
     align-items: center;
@@ -84,14 +89,17 @@ const ResultsBox = styled.div`
         font-weight: 600;
     }
     button{
-        background-color: rgb(30,100,200);
+        background-color: #b6fbfb83;
         color: white;
         padding: 10px;
-        border: 2px solid;
         font-family: "Kufam", cursive;
         font-weight: 500;
         border-radius: 5px;
+        transition: 1s;
         font-size: clamp(25px, calc(1vw+2vh), calc(1vw+2vh));
+        &:hover{
+            background-color: #7ad4d4;
+        }
     }
 `
 
@@ -101,9 +109,9 @@ display: flex;
 flex-direction: column;
 align-items: center;font-family: "Kufam", cursive;
 z-index: 3;
-background-color: rgba(0,0,50,.8);
+background-color: #305cae;
 color: white;
-border: 3px solid rgb(25,125,179);
+border: 3px solid #b6fbfb83;
 border-radius: 5px;
 padding: 20px;
 width: clamp(350px, 40vw, 40vw);
@@ -117,19 +125,19 @@ h2{
     padding: 20px 0;
 }
 input{
-    border: 3px solid rgb(11,125,179);
+    border: 3px solid #b6fbfb83;
     padding: 10px 0;
     width: 100%;
-    color: rgb(179,179,179);
+    color: white;
     margin-bottom: 20px;
     font-family: "Kufam", cursive;
     text-align: center;
     border-radius: 5px;
     font-weight: 500;
     font-size: calc(1vw + 1vh + 10px);
-    background-color: rgb(0,0,70);
+    background-color: transparent;
     ::placeholder{
-       color: rgb(120,120,120)
+       color: #b6fbfb83;
     }
     ::focus{
         border-color: rgb(0,0,0)
@@ -145,22 +153,30 @@ div{
     button{
         font-size: 20px;
         padding: 8px;
-        background: rgb(130,40,180);
+        background: #b6fbfb83;
         color: white;
         font-weight: 600;
         font-family: "Kufam", cursive;
         border-radius: 5px;
-        cursor: pointer
+        cursor: pointer;
+        transition: 1s;
+        &:hover{
+            background-color: #7ad4d4;
+        }
     }
 }
 `
 const Button = styled.button`
 padding: 10px;
 font-size: 25px;
-background-color: rgb(40,150,200);
+background-color: #b6fbfb83;
 border-radius: 5px;
 color: white;
 font-family: "Kufam", cursive;
+transition: 1s;
+&:hover{
+    background-color: #7ad4d4;
+}
 `
 
 
@@ -441,12 +457,15 @@ const ExContainer = () => {
     return <main>
         {
             ChooseLevel && <ChooseDiv>
+                 <StyledBackground/>
                 <div>
-                <h2>Elige la cantidad de dígitos con los que quieres realizar las {type}</h2>
-                <button onClick={() => SetLevel(1)}>Un dígito</button>
-                <button onClick={() => SetLevel(2)}>Dos dígitos</button>
-                <button onClick={() => SetLevel(3)}>Tres dígitos</button>
-                <button onClick={() => SetLevel(4)}>Cuatro dígitos</button>
+                <h2>Elige la cantidad de dígitos con los que deseas realizar los ejercicios de {type}</h2>
+                <article className="buttons">
+                    <button onClick={() => SetLevel(1)}>1 dígito</button>
+                    <button onClick={() => SetLevel(2)}>2 dígitos</button>
+                    <button onClick={() => SetLevel(3)}>3 dígitos</button>
+                    <button onClick={() => SetLevel(4)}>4 dígitos</button>
+                </article>
                 </div>
             </ChooseDiv>
         }

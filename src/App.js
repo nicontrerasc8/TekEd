@@ -19,7 +19,7 @@ function App() {
        <Route exact path='/'>
          <HomeContainer/>
        </Route>
-       <Route exact path='/categoria/ciencia'>
+      {/*  <Route exact path='/categoria/ciencia'>
          <ScienceMainContainer/>
        </Route>
        <Route exact path='/categoria/ciencia/:category'>
@@ -30,11 +30,11 @@ function App() {
        </Route>
        <Route exact path="/categoria/ciencia/:category/:identification">
          <ScienceArticle/>
-       </Route>
-        <Route exact path="/categoria/matematica">
+       </Route> */}
+        <Route exact path="/matematica">
           <MathAreaContainer/>  
         </Route>
-        <Route exact path="/categoria/matematica/:type">
+        <Route exact path="/matematica/:type">
           <ExAreaContainer/>
         </Route>
      </Switch>
