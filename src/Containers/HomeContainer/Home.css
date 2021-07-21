@@ -21,7 +21,7 @@
     margin-top: 70px;
 }
 .message h3{
-    font-size: clamp(40px, calc(4vw+4vh), calc(4vw+4vh));
+    font-size: clamp(40px, calc(3vw+4vh), calc(3vw+34vh));
 }
 .message p{
     margin-top: 20px;
