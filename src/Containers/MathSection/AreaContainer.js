@@ -107,7 +107,7 @@ const AreaContainer = () => {
                         return <StyledArticle key={idx}>
                             <img src={data.img}/>
                             <h3>{data.text}</h3>
-                            <p>{data.dif}.</p>
+                            <p>Aprende cómo resolver de {data.text} y practica ejercicios de forma ilimitada. Desde {data.text} con números de una cifra hasta con números de 4 cifras.</p>
                             <LinkButton path={"/matematica/" + data.path} text="Elegir" fontSize="25px"/>
                         </StyledArticle>
                     }) 

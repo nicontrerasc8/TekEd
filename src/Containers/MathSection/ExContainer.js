@@ -230,7 +230,6 @@ const ExContainer = () => {
     const ChangeLevel = (param) => {
         if(type === "sumas"){
             setSumLevel(SumLevel + param)
-            console.log(SumLevel)
         }
         if(type === "restas"){
             setSubstractLevel(SubstractLevel + param)
