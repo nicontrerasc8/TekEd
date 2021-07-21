@@ -70,7 +70,7 @@ const ResultsBox = styled.div`
         width: clamp(320px, 50vw, 60vw);
         background-color: #305cae;
         padding: 20px 5%;
-        border: 4px dashed #b6fbfb83;
+        border: 4px solid #b6fbfb83;
         border-radius: 5px;
         display: flex;
     align-items: center;
