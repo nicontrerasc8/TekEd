@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import LinkButton from '../../StyledComponents/Button/LinkButton'
 import { StyledBackground } from '../../StyledComponents/StyledBackground'
@@ -7,6 +7,7 @@ import SumIMG from "./sum.png"
 import MinIMG from "./minus.png"
 import DivImg from "./div.png"
 import TimesIMG from "./times.png"
+import LoadingContainer from '../../Components/LoadingContainer'
 
 const Div = styled.div`
 position: relative;
@@ -55,6 +56,10 @@ h3{
 };
 p{
     margin: 1rem 0;
+    span{
+        text-transform: lowercase;
+        color: white;
+    }
 }
 span{
     color: rgb(0,220,240);
@@ -93,10 +98,17 @@ const Values = [
 ]
 
 const AreaContainer = () => {
+    const [Loading, setLoading] = useState(true)
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false)
+        }, 2000);
+    }, [])
     return (
         <div>
             <StyledBackground/>
             <InitNavBar/>
+            {Loading && <LoadingContainer/>}
             <Div>
                 <h2>
                     Juega y practica con matemáticas
@@ -107,7 +119,7 @@ const AreaContainer = () => {
                         return <StyledArticle key={idx}>
                             <img src={data.img}/>
                             <h3>{data.text}</h3>
-                            <p>Aprende cómo resolver de {data.text} y practica ejercicios de forma ilimitada. Desde {data.text} con números de una cifra hasta con números de 4 cifras.</p>
+                            <p>Aprende cómo resolver de <span>{data.text}</span> y practica ejercicios de forma ilimitada. Desde <span>{data.text}</span> con números de una cifra hasta con números de 4 cifras.</p>
                             <LinkButton path={"/matematica/" + data.path} text="Elegir" fontSize="25px"/>
                         </StyledArticle>
                     }) 

@@ -10,15 +10,17 @@ import ScienceCategoryContainer from './Containers/ScienceSection/CategoryContai
 import ScienceArticle from './Containers/ScienceSection/Article/Article';
 import ExAreaContainer from './Containers/MathSection/ExContainer';
 import { AppContextProvider } from './Context/AppContext';
+import ScrollToTop from './ScrollToTop';
 
 function App() {
   return (
      <AppContextProvider>
       <Router>
-     <Switch>
-       <Route exact path='/'>
-         <HomeContainer/>
-       </Route>
+      <ScrollToTop/>
+        <Switch>
+          <Route exact path='/'>
+           <HomeContainer/>
+          </Route>
       {/*  <Route exact path='/categoria/ciencia'>
          <ScienceMainContainer/>
        </Route>
@@ -31,13 +33,13 @@ function App() {
        <Route exact path="/categoria/ciencia/:category/:identification">
          <ScienceArticle/>
        </Route> */}
-        <Route exact path="/matematica">
-          <MathAreaContainer/>  
-        </Route>
-        <Route exact path="/matematica/:type">
-          <ExAreaContainer/>
-        </Route>
-     </Switch>
+          <Route exact path="/matematica">
+            <MathAreaContainer/>  
+          </Route>
+          <Route exact path="/matematica/:type">
+            <ExAreaContainer/>
+          </Route>
+        </Switch>
    </Router>
      </AppContextProvider>
   )

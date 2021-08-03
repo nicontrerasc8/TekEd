@@ -5,6 +5,7 @@
   box-sizing: border-box;
   outline: none;
   text-decoration: none;
+  overflow-x: hidden;
   list-style: none;
 }
 ::-webkit-scrollbar {
@@ -88,4 +89,47 @@ button:disabled{
 .buttons{
   display: flex;
   flex-wrap: wrap;
+  margin-top: 20px;
+  grid-gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+.main-ex{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+.explanation{
+  position: relative;
+display: flex;
+flex-direction: column;
+align-items: center;font-family: "Kufam", cursive;
+z-index: 3;
+background-color: #305cae;
+color: white;
+text-align: center;
+border: 3px solid #b6fbfb83;
+width: clamp(320px, 60vw, 60vw);
+margin: 50px 0;
+padding: 20px 5%;
+border-radius: 5px;
+}
+.explanation h1{
+    font-size: calc(3vh + 3vw + 20px);
+}
+.explanation h2{
+  font-size: clamp(30px, calc(2vw+2vh+20px), calc(2vw+2vh+20px));
+}
+.explanation p{
+  font-size: 25px;
+  margin: 20px 0;
+  color: rgb(220, 239, 252);
+}
+.fa-medal{
+  color: gold;
+}
+.display-none{
+  display: none;
 }

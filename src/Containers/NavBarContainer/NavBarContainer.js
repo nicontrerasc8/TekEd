@@ -5,11 +5,15 @@ import { Links, MathLinks, ScienceLinks } from './Data/Data'
 import styled from "styled-components";
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { rgbToHex } from '@material-ui/core';
+import LinkButton from '../../StyledComponents/Button/LinkButton';
 
 // Styled component named StyledButton
 const Nav = styled.nav`
 background-color: ${props => props.solid ? "#274C90" : "#305cae"};
-
+div{
+   display: flex;
+   grid-gap: 20px;
+}
 `
 const MathLi = styled.li `
 color: ${props => props.color ? props.color : "#305cae"};
@@ -26,7 +30,7 @@ background-color:rgba(250,250,250, .05);
 `
 
 
-const InitNavBar = () => {
+const InitNavBar = ({isEx, isHow}) => {
    const matches = useMediaQuery('(max-width:950px)');
    const [navStatus, setNavStatus] = useState(false)
    const [navSolidColor, setNavSolidColor] = useState(false)
@@ -48,16 +52,21 @@ const InitNavBar = () => {
 
   }, [])
 
-   return ( <div>
-      <Nav solid={navSolidColor}>
+   return /* ( <div> */<Nav solid={navSolidColor}>
          <Link to="/">
          <h1 className="logo">Tek<span>Ed</span></h1>
          </Link>
-        {/*  <button onClick={ChangeNavUseState} className="nav-btn">
-            Elige un área
-         </button> */}
+         <div>
+         {
+             isEx && <LinkButton path="/matematica" text="🏠" fontSize="clamp(25px, calc(2vh + 1vw), calc(2vh + 2vw + 10px))" width="80px"/>
+          }
+          {
+             isHow && <LinkButton text="?" fontSize="clamp(30px, calc(2vh + 1vw), calc(2vh + 2vw + 10px))" width="clamp(70px, calc(2vh + 2vw + 20px) ,calc(2vh + 2vw + 20px))"/>
+          }
+         </div>
+         
       </Nav>
-      <aside className={navStatus ? "active": null}>
+{/*       <aside className={navStatus ? "active": null}>
       <button onClick={ChangeNavUseState} className="nav-btn">
        Volver <i className="fas fa-arrow-right"></i>
          </button>
@@ -82,8 +91,7 @@ const InitNavBar = () => {
          </article>
       </div>
       </aside>
-      </div>
-   )
+      </div> */}
 }
 
 export default InitNavBar

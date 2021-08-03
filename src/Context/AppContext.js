@@ -4,15 +4,9 @@ const AppContext = createContext()
 const useAppContext = () => useContext(AppContext)
 
 export const AppContextProvider = ({children}) => {
-    const [SumLevel, setSumLevel] = useState(null)
-    const [SubstractLevel, setSubstractLevel] = useState(null)
-    const [MulLevel, setMulLevel] = useState(null)
-    const [DivLevel, setDivLevel] = useState(null)
+    const [CounterCorrect, setCounterCorrect] = useState(0)
     
-    return <AppContext.Provider value={{SumLevel, setSumLevel, 
-    SubstractLevel, setSubstractLevel, 
-    MulLevel, setMulLevel, 
-    DivLevel, setDivLevel}}>
+    return <AppContext.Provider value={{CounterCorrect, setCounterCorrect}}>
         {children}
     </AppContext.Provider>
 }

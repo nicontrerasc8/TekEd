@@ -4,52 +4,48 @@ import InitNavBar from '../NavBarContainer/NavBarContainer'
 import styled from 'styled-components'
 import { useParams } from 'react-router-dom'
 import useAppContext from '../../Context/AppContext'
+import LoadingContainer from "../../Components/LoadingContainer"
+import LinkButton from '../../StyledComponents/Button/LinkButton'
+import useKeypress from "react-use-keypress"
+import Check from "./check.png"
+import Wrong from "./wrong.png"
+import InputArea from './InputArea/InputArea'
 
-const ChooseDiv = styled.div`
-position: fixed;
-    z-index: 20;
-    top: 0;
-    left:0;
-    width: 100vw;
-    height: 100vh;
-    background-color: #305cae;
-    display: flex;
-    align-items: center;
-    color: white;
-    text-align: center;
-    flex-direction: column;
-    justify-content: center;
-    font-family: "Kufam", cursive;
-    padding: 20px 8vw;
-    div{
-        position: relative;
-        z-index: 30;
+const Accordeon = styled.div`
+position: relative;
+display: flex;
+flex-direction: column;
+padding: 20px;
+background: #305cae;
+width: clamp(300px, 70vw, 70vw);
+align-items: center;
+font-family: "Kufam", cursive;
+text-align:right;
+z-index: 3;
+article{
+    button{
+        font-weight: 600;
+        background-color: #b6fbfb50;
+        color: white;
         display: flex;
-    align-items: center;
-    background-color: #305cae;
-    flex-direction: column;
-    padding: 20px;
-    border-radius: 5px;
-    justify-content: center;
-        h2{
-            background-color: #305cae;
-            font-size: clamp(25px, calc(2vw + 1vh), calc(2vw + 2vh));
-        }
-        button{
-            margin-top: 20px;
-            padding: 10px;
-            width: 100%;
-            font-family: "Kufam", cursive;
-            background-color: #b6fbfb83;
-            font-size: clamp(25px, calc(1vw + 1vh + 10px), calc(1vw + 1vh + 10px));
-            color: white;
-            border-radius: 5px;
-            transition: 1s;
-            &:hover{
-                background-color: #7ad4d4;
-            }
+        align-items: center;
+        flex-direction: column;
+        text-align: left;
+        font-family: "Kufam", cursive;
+        border: 2px solid #b6fbfb83;
+        padding: 10px;
+        border-radius: 5px;
+        font-size: clamp(25px, calc(1vw + 1vh), calc(1vw + 1vh));
+        div{
+            font-weight: bold;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            border-bottom: 3px solid;
+            margin-bottom: 10px;
         }
     }
+}
 `
 
 const ResultsBox = styled.div`
@@ -78,14 +74,17 @@ const ResultsBox = styled.div`
     justify-content: center;
     text-align:center;
     }
+    img{
+        width: clamp(180px, 60%, 80%);
+    }
     h3{
         font-size: clamp(35px, calc(3vw+2vh), calc(3vw+2vh));
         font-weight: 600;
-        padding: 10px 0 30px 0;
+        padding: 10px 0;
     }
     h4{
         font-size: clamp(30px, calc(2vw+2vh+5px), calc(2vw+2vh+5px));
-        margin-bottom: 30px;
+        margin-bottom: 20px;
         font-weight: 600;
     }
     button{
@@ -93,7 +92,6 @@ const ResultsBox = styled.div`
         color: white;
         padding: 10px;
         font-family: "Kufam", cursive;
-        font-weight: 500;
         border-radius: 5px;
         transition: 1s;
         font-size: clamp(25px, calc(1vw+2vh), calc(1vw+2vh));
@@ -115,19 +113,31 @@ border: 3px solid #b6fbfb83;
 border-radius: 5px;
 padding: 20px;
 width: clamp(350px, 40vw, 40vw);
-text-align: center;
 p{
-    font-size: 20px;
+    font-size: 30px;
+    color: gold;
     padding: 0 0 15px 0;
 }
-h2{
+article{
+    text-align: right;
     font-size: calc(3vh + 3vw + 20px);
-    padding: 20px 0;
+    padding: 0;
+    margin: 20px 0 40px 0;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 3px solid white;
+}
+section{
+    display: flex;
+    flex-direction: row;
+    grid-gap: 2px;
+    align-items: center;
+    justify-content:center;
 }
 input{
     border: 3px solid #b6fbfb83;
     padding: 10px 0;
-    width: 100%;
+    width: 20%;
     color: white;
     margin-bottom: 20px;
     font-family: "Kufam", cursive;
@@ -138,9 +148,9 @@ input{
     background-color: transparent;
     ::placeholder{
        color: #b6fbfb83;
-    }
+    };
     ::focus{
-        border-color: rgb(0,0,0)
+        border-color: white
     }
 }
 div{
@@ -179,11 +189,64 @@ transition: 1s;
 }
 `
 
+const Info = [
+    {
+        fn1: 1,
+        fn2: 1, 
+    },
+    {
+        fn1: 2,
+        fn2: 1, 
+    },
+    {
+        fn1: 3,
+        fn2: 1, 
+    },
+    {
+        fn1: 4,
+        fn2: 1, 
+    },
+    {
+        fn1: 2,
+        fn2: 2, 
+    },
+    {
+        fn1: 3,
+        fn2: 2, 
+    },
+    {
+        fn1: 4,
+        fn2: 2, 
+    },
+    {
+        fn1: 3,
+        fn2: 3, 
+    },
+    {
+        fn1: 4,
+        fn2: 3, 
+    },
+    {
+        fn1: 4,
+        fn2: 4, 
+    },
+]
+
 
 const ExContainer = () => {
-    const [Counter, setCounter] = useState(0)
-    const [CounterCorrect, setCounterCorrect] = useState(0)
+    const [Loading, setLoading] = useState(false)
+    const [Explanation, setExplanation] = useState(0)
+    const [S, setS] = useState(false)
+    const {CounterCorrect, setCounterCorrect} = useAppContext()
     const [Value, setValue] = useState("")
+    const [Value2, setValue2] = useState("")
+    const [Value3, setValue3] = useState("")
+    const [Value4, setValue4] = useState("")
+    const [Value5, setValue5] = useState("")
+    const [Value6, setValue6] = useState("")
+    const [Value7, setValue7] = useState("")
+    const [Value8, setValue8] = useState("")
+    const [Title, setTitle] = useState("")
     const [valor1, setvalor1] = useState(0)
     const [valor2, setvalor2] = useState(0)
     const [FinalResult, setFinalResult] = useState(0)
@@ -191,55 +254,37 @@ const ExContainer = () => {
     const [AnsWasCorrect, setAnsWasCorrect] = useState(false)
     const [Operator, setOperator] = useState("")
     const {type} = useParams()
-    const inputRef = useRef(null);
-    const [InvalidateHarder, setInvalidateHarder] = useState(false)
-    const [InvalidateSofter, setInvalidateSofter] = useState(false)
-    const {SumLevel, setSumLevel, 
-        SubstractLevel, setSubstractLevel, 
-        MulLevel, setMulLevel, 
-        DivLevel, setDivLevel} = useAppContext()
-        const [ChooseLevel, setChooseLevel] = useState(false)
+    const [Ex1, setEx1] = useState(0)
+    const [Ex2, setEx2] = useState(0)
+    const [Level, setLevel] = useState(1)
+    const [Level2, setLevel2] = useState(1)
+/*     const [InvalidateHarder, setInvalidateHarder] = useState(false)
+    const [InvalidateSofter, setInvalidateSofter] = useState(false) */
+        const [ChooseLevel, setChooseLevel] = useState(true)
 
     const addCorrect = () => {
         setCounterCorrect(CounterCorrect+1)
-        setCounter(Counter+1)
         setShowResults(false)
         setValue("")
+        setValue2("")
+        setValue3("")
+        setValue4("")
+        setValue5("")
+        setValue6("")
+        setValue7("")
+        setValue8("")
     }
     const addIncorrect = () => {
-        setCounter(Counter+1)
         setShowResults(false)
-        setValue("")
     }
-    const SetLevel = (param) => {
-        if(type === "sumas"){
-            setSumLevel(param)
-        }
-        if(type === "restas"){
-            setSubstractLevel(param)
-        }
-        if(type === "multiplicaciones"){
-            setMulLevel(param)
-        }
-        if(type === "divisiones"){
-            setDivLevel(param)
-        }
+    const SetLevel = (param, param2) => {
+        setLevel(param)
+        setLevel2(param2)
         setChooseLevel(false)
-    }
-
-    const ChangeLevel = (param) => {
-        if(type === "sumas"){
-            setSumLevel(SumLevel + param)
-        }
-        if(type === "restas"){
-            setSubstractLevel(SubstractLevel + param)
-        }
-        if(type === "multiplicaciones"){
-            setMulLevel(MulLevel + param)
-        }
-        if(type === "divisiones"){
-            setDivLevel(DivLevel + param)
-        }
+        setLoading(true)
+        setTimeout(() => {
+            setLoading(false)
+        }, 500);
     }
     
     const CheckAnswer = () => {
@@ -249,84 +294,55 @@ const ExContainer = () => {
             alert("Escribe un valor numérico")
         }
         else {
-            if(Value == FinalResult){
+            var response
+            response = Value8 + Value7 + Value6 + Value5 + Value4 + Value3 + Value2 + Value
+            if(response == FinalResult){
                 setAnsWasCorrect(true)
             }else{
                 setAnsWasCorrect(false)
+                console.log(response)
+                console.log(FinalResult)
             }
             setTimeout(() => {
                 setShowResults(true)
             }, 200);    
         }
     }
+
+    useKeypress(["Enter"],(event) => {
+        if(event.key === "Enter"){
+            CheckAnswer()
+        }
+    })
         
     useEffect(() => {
-        if(type === "sumas"){
-            var v1 = Math.floor(Math.random() * Math.pow(10, SumLevel) + 1);
-            if (SumLevel === 2 && v1 < 10){
-                v1 += 10;
-            }
-            if (SumLevel === 3 && v1 < 100){
-                v1 += 100;
-            }
-            if (SumLevel === 4 && v1 < 1000){
-                v1 += 1000;
-            }
-            var v2 = Math.floor(Math.random() * Math.pow(10, SumLevel) + 1);
-            if (SumLevel === 2 && v2 < 10){
-                v2 += 10;
-            }
-            if (SumLevel === 3 && v2 < 100){
-                v2 += 100;
-            }
-            if (SumLevel === 4 && v2 < 1000){
-                v2 += 1000;
-            }
+        if(ChooseLevel){
+            window.scrollTo(0,0)
+        }
+        var v1, v2
+        v1 = Math.floor(Math.random() * Math.pow(10, Level) + 1);
+        v2 = Math.floor(Math.random() * Math.pow(10, Level2) + 1)
+        if (Level === 2 && v1 < 10) v1 += 10;
+        if (Level === 3 && v1 < 100){
+            v1 += 100;
+        }
+        if (Level === 4 && v1 < 1000){
+            v1 += 1000;
+        }
+        if (Level2 === 2 && v2 < 10){
+            v2 += 10;
+        }
+        if (Level2 === 3 && v2 < 100){
+            v2 += 100;
+        }
+        if (Level2 === 4 && v2 < 1000){
+            v2 += 1000;
+        }
+        if(type === "sumas"){ 
             var result = v1+v2
             setOperator("+")
-            if (SumLevel === null){
-                setChooseLevel(true)
-            }else {
-                setChooseLevel(false)
-            }
-
-
-            if (SumLevel === 1){
-                setInvalidateSofter(true)
-            }
-            else{
-                setInvalidateSofter(false)
-            }
-
-
-            if(SumLevel === 4){
-                setInvalidateHarder(true)
-            }
-            else{
-                setInvalidateHarder(false)
-            }
         }
-        if(type === "restas"){
-            var v1 = Math.floor(Math.random() * Math.pow(10, SubstractLevel) + 1);
-            if (SubstractLevel === 2 && v1 < 10){
-                v1 += 10;
-            }
-            if (SubstractLevel === 3 && v1 < 100){
-                v1 += 100;
-            }
-            if (SubstractLevel === 4 && v1 < 1000){
-                v1 += 1000;
-            }
-            var v2 = Math.floor(Math.random() * Math.pow(10, SubstractLevel) + 1);
-            if (SubstractLevel === 2 && v2 < 10){
-                v2 += 10;
-            }
-            if (SubstractLevel === 3 && v2 < 100){
-                v2 += 100;
-            }
-            if (SubstractLevel === 4 && v2 < 1000){
-                v2 += 1000;
-            }
+        else if(type === "restas"){
             if (v1 < v2){
                 var aux = v1;
                 v1 = v2
@@ -334,185 +350,150 @@ const ExContainer = () => {
             }
             var result = v1-v2
             setOperator("-")
-            if (SubstractLevel === null){
-                setChooseLevel(true)
-            }else {
-                setChooseLevel(false)
-            }
-
-
-            if (SubstractLevel === 1){
-                setInvalidateSofter(true)
-            }
-            else{
-                setInvalidateSofter(false)
-            }
-
-
-            if (SubstractLevel === 4){
-                setInvalidateHarder(true)
-            }
-            else{
-                setInvalidateHarder(false)
-            }
         }
-        if(type === "multiplicaciones"){
-            var v1 = Math.floor(Math.random() * Math.pow(10, MulLevel) + 1);
-            if (MulLevel === 2 && v1 < 10){
-                v1 += 10;
-            }
-            if (MulLevel === 3 && v1 < 100){
-                v1 += 100;
-            }
-            if (MulLevel === 4 && v1 < 1000){
-                v1 += 1000;
-            }
-            var v2 = Math.floor(Math.random() * Math.pow(10, MulLevel) + 1);
-            if (MulLevel === 2 && v2 < 10){
-                v2 += 10;
-            }
-            if (MulLevel === 3 && v2 < 100){
-                v2 += 100;
-            }
-            if (MulLevel === 4 && v2 < 1000){
-                v2 += 1000;
-            }
+        else if(type === "multiplicaciones"){
             var result = v1*v2
             setOperator("x")
-            if (MulLevel === null){
-                setChooseLevel(true)
-            }else {
-                setChooseLevel(false)
-            }
-
-
-            if (MulLevel === 1){
-                setInvalidateSofter(true)
-            }
-            else{
-                setInvalidateSofter(false)
-            }
-
-
-            if (MulLevel === 4){
-                setInvalidateHarder(true)
-            }
-            else{
-                setInvalidateHarder(false)
-            }
         }
-        if(type === "divisiones") {
+        else if(type === "divisiones") {
             do {
-                var v1 = Math.floor(Math.random() * Math.pow(10, DivLevel) + 2);
-                if (DivLevel === 2 && v1 < 10){
-                    v1 += 10;
-                }
-                if (DivLevel === 3 && v1 < 100){
-                    v1 += 100;
-                }
-                if (DivLevel === 4 && v1 < 1000){
-                    v1 += 1000;
-                }
-                var v2 = Math.floor(Math.random() * Math.pow(10, DivLevel) + 2);
-                if (DivLevel === 2 && v2 < 10){
-                    v2 += 10;
-                }
-                if (DivLevel === 3 && v2 < 100){
-                    v2 += 100;
-                }
-                if (DivLevel === 4 && v2 < 1000){
-                    v2 += 1000;
-                }
+                v1 = Math.floor(Math.random() * (Math.pow(10, Level) - 2) + 2);
+                v2 = Math.floor(Math.random() * (Math.pow(10, Level2) - 2) + 2);
             } while (v1 % v2 != 0);
             if (v1 === v2){
                 v2 = v1/2
             }
             var result = v1/v2
             setOperator("÷")
-            if (DivLevel === null){
-                setChooseLevel(true)
-            }else {
-                setChooseLevel(false)
-            }
-
-
-            if (DivLevel === 1){
-                setInvalidateSofter(true)
-            }
-            else{
-                setInvalidateSofter(false)
-            }
-
-
-            if(DivLevel === 4){
-                setInvalidateHarder(true)
-            }
-            else{
-                setInvalidateHarder(false)
-            }
         }
         setvalor1(v1)
         setvalor2(v2)
         setFinalResult(result)
-        inputRef.current.focus()
-    }, [Counter, ChooseLevel, SumLevel, SubstractLevel, MulLevel, DivLevel])
+    }, [CounterCorrect, Level, Level2])
 
 
-    return <main>
-        {
-            ChooseLevel && <ChooseDiv>
-                 <StyledBackground/>
-                <div>
-                <h2>Elige la cantidad de dígitos con los que deseas realizar los ejercicios de {type}</h2>
-                <article className="buttons">
-                    <button onClick={() => SetLevel(1)}>1 dígito</button>
-                    <button onClick={() => SetLevel(2)}>2 dígitos</button>
-                    <button onClick={() => SetLevel(3)}>3 dígitos</button>
-                    <button onClick={() => SetLevel(4)}>4 dígitos</button>
-                </article>
+    return <div className="math-ex">
+        <main className="main-ex">
+            {
+                Loading && <LoadingContainer/>
+            }
+       <ResultsBox className={ShowResults ? "active-results" : "results"}>
+           {
+               AnsWasCorrect ? 
+               <div>
+                   <img src={Check}/>
+                   <h3>¡Respuesta correcta!</h3>
+                   <h4>{valor1} {Operator} {valor2} = {FinalResult}</h4>
+                   <button onClick={addCorrect}>Siguiente ejercicio</button>
+               </div> : 
+               <div>
+                   <img src={Wrong}/>
+               <h3>¡Sigue intentando!</h3>
+               <button onClick={addIncorrect}>Intenta de nuevo</button>
+           </div>
+           }
+           </ResultsBox>
+           <Accordeon>
+           <LinkButton path={"/matematica/" + type} text="Elige la dificultad" callback={() => setChooseLevel(!ChooseLevel)}/>
+          {
+              ChooseLevel &&  <article className="buttons">
+              {
+                  Info && Info.map((data, idx) => {
+                      return <button key={idx}
+                      onClick={() => SetLevel(data.fn1, data.fn2)} >
+                          <div>
+                            <span>
+                                {data.fn1 === 1 && 8} 
+                                {data.fn1 === 2 && 54} 
+                                {data.fn1 === 3 && 820}
+                                {data.fn1 === 4 && 3264}
+                          </span>
+                        <span>
+                                {Operator}&#160;
+                                {data.fn2 === 1 && 6} 
+                                {data.fn2 === 2 && 32} 
+                                {data.fn2 === 3 && 464}
+                                {data.fn2 === 4 && 7427}
+                        </span>
+                          </div>
+                          <p>
+                          {data.fn1} cifra{data.fn1 > 1 ? "s " : " "} 
+                           {Operator}
+                           &#160;{data.fn2} cifra{data.fn2 > 1 && "s "}
+                          </p>
+                      </button>
+                  })
+              }
+          </article>
+          }
+
+           </Accordeon>
+       <Article>
+               {
+                   CounterCorrect > 0 && <p><i className="fas fa-medal"></i> x {CounterCorrect} </p>
+               }
+
+           {
+               Operator != "÷" && <article>
+                   <span>{valor1}</span> <span>{Operator} {valor2}</span>
+               </article>
+           }
+           <InputArea val={FinalResult} 
+            x1={Value}
+            x2={Value2}
+            x3={Value3}
+            x4={Value4}
+            x5={Value5}
+            x6={Value6}
+            x7={Value7}
+            x8={Value8}
+            y1={setValue}
+            y2={setValue2}
+            y3={setValue3}
+            y4={setValue4}
+            y5={setValue5}
+            y6={setValue6}
+            y7={setValue7}
+            y8={setValue8}
+           />
+           <Button onClick={CheckAnswer}>
+               Comprobar
+           </Button>
+           {/* <div>
+           <button disabled={InvalidateSofter} onClick={() => ChangeLevel(-1)}>Disminuir dificultad</button>
+           <button disabled={InvalidateHarder} onClick={() => ChangeLevel(1)}>Aumentar dificultad</button>
+           </div> */}
+       </Article>
+        {/* <div className="explanation">
+            <h2>Aprende a resolver ejercicios de {type} con números de {Title} cifra{S && "s"}.</h2>
+            <p>Ejemplo: </p>
+            <h1>{Ex1} {Operator} {Ex2}</h1>
+            {/* {
+                Explanation === 1 && <div>
+                    <p>Para resolver un ejercicio de sumas tenemos que añadir ambas cantidades para obtener el resultado final.</p>
+                    <p>Puedes ayudarte usando los dedos de tu mano.</p>
+                    <h2>{Ex1} + {Ex2} = {Ex1    + Ex2}</h2>
                 </div>
-            </ChooseDiv>
-        }
-    <ResultsBox className={ShowResults ? "active-results" : "results"}>
-        {
-            AnsWasCorrect ? 
-            <div>
-                <h3>¡Respuesta correcta!</h3>
-                <h4>{valor1} {Operator} {valor2} = {FinalResult}</h4>
-                <button onClick={addCorrect}>Siguiente ejercicio</button>
-            </div> : 
-            <div>
-            <h3>¡Sigue intentando!</h3>
-            <h4>{valor1} {Operator} {valor2} = {FinalResult}</h4>
-            <h4>Tu respuesta fue: {Value}</h4>
-            <button onClick={addIncorrect}>Siguiente ejercicio</button>
-        </div>
-        }
-        </ResultsBox>
-    <Article>
-        <p>Puntacion: {CounterCorrect}/{Counter}</p>
-        <h2>{valor1} {Operator} {valor2}</h2>
-        <input autoComplete="off" ref={inputRef} placeholder="Escribe aquí tu respuesta" value={Value} onChange={(e) => setValue(e.target.value)}/>
-        <Button onClick={CheckAnswer}>
-            Comprobar
-        </Button>
-        <div>
-        <button disabled={InvalidateSofter} onClick={() => ChangeLevel(-1)}>Disminuir dificultad</button>
-        <button disabled={InvalidateHarder} onClick={() => ChangeLevel(1)}>Aumentar dificultad</button>
-        </div>
-    </Article> </main>
+            } */}
+            {/* {
+                Explanation === 2 && <div>
+                    <p>Primero que nada, debemos sumar los primeros cifras de la operación</p>
+                </div>
+            } 
+        </div> */}
+       </main>
+    </div>
 }
 
 const ExAreaContainer = () => {
-
+    useEffect(() => {
+        window.scrollTo(0,0)
+    }, [])
     return (
         <div>
             <StyledBackground/>
-            <InitNavBar/>
-            <div className="math-ex">
-                <h2>Resuelve</h2>
-                <ExContainer/>
-            </div>
+            <InitNavBar isEx={true}/>
+            <ExContainer/>
         </div>
     )
 }
