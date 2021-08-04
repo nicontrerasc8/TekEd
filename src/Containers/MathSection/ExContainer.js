@@ -44,6 +44,12 @@ article{
             border-bottom: 3px solid;
             margin-bottom: 10px;
         }
+        section{
+            font-weight: bold;
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 10px;
+        }
     }
 }
 `
@@ -307,8 +313,6 @@ const ExContainer = () => {
                 setAnsWasCorrect(true)
             }else{
                 setAnsWasCorrect(false)
-                console.log(response)
-                console.log(FinalResult)
             }
             setTimeout(() => {
                 setShowResults(true)
@@ -418,21 +422,35 @@ const ExContainer = () => {
                   Info && Info.map((data, idx) => {
                       return <button key={idx}
                       onClick={() => SetLevel(data.fn1, data.fn2)} >
-                          <div>
-                            <span>
-                                {data.fn1 === 1 && 8} 
-                                {data.fn1 === 2 && 54} 
-                                {data.fn1 === 3 && 820}
-                                {data.fn1 === 4 && 3264}
+                          {
+                              Operator != "÷" ? <div>
+                              <span>
+                                  {data.fn1 === 1 && 8} 
+                                  {data.fn1 === 2 && 54} 
+                                  {data.fn1 === 3 && 820}
+                                  {data.fn1 === 4 && 3264}
+                            </span>
+                          <span>
+                                  {Operator}&#160;
+                                  {data.fn2 === 1 && 6} 
+                                  {data.fn2 === 2 && 32} 
+                                  {data.fn2 === 3 && 464}
+                                  {data.fn2 === 4 && 7427}
                           </span>
-                        <span>
-                                {Operator}&#160;
-                                {data.fn2 === 1 && 6} 
+                            </div> : <section>
+                                <span style={{marginTop: "10px"}}>
+                                {data.fn1 === 1 && 8} 
+                                  {data.fn1 === 2 && 54} 
+                                  {data.fn1 === 3 && 820}
+                                  {data.fn1 === 4 && 3264}
+                                </span> 
+                                <Span>{data.fn2 === 1 && 6} 
                                 {data.fn2 === 2 && 32} 
                                 {data.fn2 === 3 && 464}
                                 {data.fn2 === 4 && 7427}
-                        </span>
-                          </div>
+                                </Span>
+                                </section>
+                          }
                           <p>
                           {data.fn1} cifra{data.fn1 > 1 ? "s " : " "} 
                            {Operator}

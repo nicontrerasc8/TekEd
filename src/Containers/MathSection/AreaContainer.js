@@ -36,6 +36,9 @@ grid-gap: 1rem;
 justify-content: center;
 z-index: 3;
 margin: 30px 5vw;
+h3{
+    margin-bottom: 20px;
+}
 `
 
 const StyledArticle = styled.article`
@@ -110,16 +113,12 @@ const AreaContainer = () => {
             <InitNavBar/>
             {Loading && <LoadingContainer/>}
             <Div>
-                <h2>
-                    Juega y practica con matemáticas
-                </h2>
                 <StyledList>
                     {
                        Values && Values.map((data, idx) => {
                         return <StyledArticle key={idx}>
                             <img src={data.img}/>
                             <h3>{data.text}</h3>
-                            <p>Aprende cómo resolver de <span>{data.text}</span> y practica ejercicios de forma ilimitada. Desde <span>{data.text}</span> con números de una cifra hasta con números de 4 cifras.</p>
                             <LinkButton path={"/matematica/" + data.path} text="Elegir" fontSize="25px"/>
                         </StyledArticle>
                     }) 
