@@ -101,6 +101,13 @@ const ResultsBox = styled.div`
     }
 `
 
+const Span = styled.span`
+border-left: 3px solid;
+border-bottom: 3px solid;
+margin-left: 20px;
+padding: 10px;
+`
+
 const Article = styled.article`
 position: relative;
 display: flex;
@@ -305,7 +312,7 @@ const ExContainer = () => {
             }
             setTimeout(() => {
                 setShowResults(true)
-            }, 200);    
+            }, 500);    
         }
     }
 
@@ -359,10 +366,26 @@ const ExContainer = () => {
             do {
                 v1 = Math.floor(Math.random() * (Math.pow(10, Level) - 2) + 2);
                 v2 = Math.floor(Math.random() * (Math.pow(10, Level2) - 2) + 2);
-            } while (v1 % v2 != 0);
-            if (v1 === v2){
-                v2 = v1/2
-            }
+                if (Level === 2 && v1 < 10) v1 += 10;
+                if (Level === 3 && v1 < 100){
+                    v1 += 100;
+                }
+                if (Level === 4 && v1 < 1000){
+                    v1 += 1000;
+                }
+                if (Level2 === 2 && v2 < 10){
+                    v2 += 10;
+                }
+                if (Level2 === 3 && v2 < 100){
+                    v2 += 100;
+                }
+                if (Level2 === 4 && v2 < 1000){
+                    v2 += 1000;
+                }
+            } while (v1 % v2 != 0 || v2/2 % 2 != 0);
+                if (v1 === v2){
+                    v2 = v1/2
+                }
             var result = v1/v2
             setOperator("÷")
         }
@@ -378,20 +401,14 @@ const ExContainer = () => {
                 Loading && <LoadingContainer/>
             }
        <ResultsBox className={ShowResults ? "active-results" : "results"}>
-           {
-               AnsWasCorrect ? 
                <div>
-                   <img src={Check}/>
-                   <h3>¡Respuesta correcta!</h3>
-                   <h4>{valor1} {Operator} {valor2} = {FinalResult}</h4>
-                   <button onClick={addCorrect}>Siguiente ejercicio</button>
-               </div> : 
-               <div>
-                   <img src={Wrong}/>
-               <h3>¡Sigue intentando!</h3>
-               <button onClick={addIncorrect}>Intenta de nuevo</button>
+                   <img src={AnsWasCorrect ? Check : Wrong}/>
+               <h3>{AnsWasCorrect ? "¡Respuesta correcta!" : "¡Sigue intentando!"}</h3>
+               {
+                   AnsWasCorrect && <h4>{valor1} {Operator} {valor2} = {FinalResult}</h4>
+               }
+               <button onClick={AnsWasCorrect ? addCorrect : addIncorrect}>{AnsWasCorrect ? "Siguiente ejercicio" : "Intenta de nuevo"}</button>
            </div>
-           }
            </ResultsBox>
            <Accordeon>
            <LinkButton path={"/matematica/" + type} text="Elige la dificultad" callback={() => setChooseLevel(!ChooseLevel)}/>
@@ -434,9 +451,11 @@ const ExContainer = () => {
                }
 
            {
-               Operator != "÷" && <article>
+               Operator != "÷" ? <article>
                    <span>{valor1}</span> <span>{Operator} {valor2}</span>
-               </article>
+               </article> : <section className="division-section">
+                   <span>{valor1}</span> <Span>{valor2}</Span>
+               </section>
            }
            <InputArea val={FinalResult} 
             x1={Value}

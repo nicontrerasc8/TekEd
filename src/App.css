@@ -130,6 +130,10 @@ border-radius: 5px;
 .fa-medal{
   color: gold;
 }
+.division-section{
+  font-size: clamp(40px, calc(3vw+2vh), calc(3vw+2vh));
+  margin-bottom: 20px;
+}
 .display-none{
   display: none;
 }
