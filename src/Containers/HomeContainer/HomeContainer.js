@@ -45,7 +45,7 @@ const HomeContainer = () => {
                      <h3>Aprende matemáticas <br/> a tu propio ritmo.</h3>
                      <p style={{marginBottom:"20px"}}>TekEd es una plataforma online donde estudiantes pueden reforzar sus conocimientos y aprender algo nuevo en matemáticas.</p>
                      <motion.div initial="out" animate="end" exit="out" variants={animationThree} transition={transitionOneSec}>
-                     <LinkButton path="/matematica" /* callback={showChooseArea} */ fontSize="calc(10px + 1vh)" width="clamp(220px, 30%, 30%)" text="Empieza dando click aquí"/>
+                     <LinkButton path="/matematica" fontSize="calc(10px + 1vh)" width="clamp(220px, 30%, 30%)" text="Empieza dando click aquí"/>
                      </motion.div>
                   </motion.div>
                </Container>

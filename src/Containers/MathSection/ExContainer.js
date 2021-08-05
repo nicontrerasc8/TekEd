@@ -10,6 +10,7 @@ import useKeypress from "react-use-keypress"
 import Check from "./check.png"
 import Wrong from "./wrong.png"
 import InputArea from './InputArea/InputArea'
+import SolutionArea from './SolutionsArea/SolutionArea'
 
 const Accordeon = styled.div`
 position: relative;
@@ -202,6 +203,23 @@ transition: 1s;
 }
 `
 
+const SolutionBox = styled.div`
+position: fixed;
+top: 0;
+left: ${props => props.isIn ? "0" : "-100vw"};
+z-index: 40;
+width: 100vw;
+display: flex;
+flex-direction: column;
+align-items: center;
+font-family: "Kufam", cursive;
+color: white;
+justify-content: center;
+height: 100vh;
+transition: 1s;
+background-color: #305cae;
+`
+
 const Info = [
     {
         fn1: 1,
@@ -249,6 +267,7 @@ const Info = [
 const ExContainer = () => {
     const [Loading, setLoading] = useState(false)
     const [Explanation, setExplanation] = useState(0)
+    const [ShowSolution, setShowSolution] = useState(false)
     const [S, setS] = useState(false)
     const {CounterCorrect, setCounterCorrect} = useAppContext()
     const [Value, setValue] = useState("")
@@ -287,7 +306,8 @@ const ExContainer = () => {
         setValue7("")
         setValue8("")
     }
-    const addIncorrect = () => {
+
+    const WasIncorrect = () => {
         setShowResults(false)
     }
     const SetLevel = (param, param2) => {
@@ -318,6 +338,24 @@ const ExContainer = () => {
                 setShowResults(true)
             }, 500);    
         }
+    }
+
+    const AvSolution = () => {
+        setShowSolution(true)
+        console.log("Xd")
+    }
+    const SolutionOut = () => {
+        setShowSolution(false)
+        setShowResults(false)
+        setValue("")
+        setValue2("")
+        setValue3("")
+        setValue4("")
+        setValue5("")
+        setValue6("")
+        setValue7("")
+        setValue8("")
+        setCounterCorrect(CounterCorrect)
     }
 
     useKeypress(["Enter"],(event) => {
@@ -404,6 +442,9 @@ const ExContainer = () => {
             {
                 Loading && <LoadingContainer/>
             }
+            <SolutionBox isIn={ShowSolution}>
+                <SolutionArea x={valor1} y={valor2} operator={Operator} Result={FinalResult} fnOut={SolutionOut}/>
+            </SolutionBox>
        <ResultsBox className={ShowResults ? "active-results" : "results"}>
                <div>
                    <img src={AnsWasCorrect ? Check : Wrong}/>
@@ -411,7 +452,12 @@ const ExContainer = () => {
                {
                    AnsWasCorrect && <h4>{valor1} {Operator} {valor2} = {FinalResult}</h4>
                }
-               <button onClick={AnsWasCorrect ? addCorrect : addIncorrect}>{AnsWasCorrect ? "Siguiente ejercicio" : "Intenta de nuevo"}</button>
+               <button onClick={AnsWasCorrect ? addCorrect : WasIncorrect}>{AnsWasCorrect ? "Siguiente ejercicio" : "Intenta de nuevo"}</button>
+               {
+                   !AnsWasCorrect && type === "sumas" && <button onClick={AvSolution} style={{marginTop:"20px", background:"white", color:"#305cae"}}>
+                       Aprende a resolverlo
+                    </button>
+               }
            </div>
            </ResultsBox>
            <Accordeon>
