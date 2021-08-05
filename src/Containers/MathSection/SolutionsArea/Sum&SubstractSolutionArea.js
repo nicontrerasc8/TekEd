@@ -31,7 +31,7 @@ const Space = () => {
     return <em style={{marginRight: "5px"}}>&#160;&#160;</em>
 }
 
-const SolutionArea = ({x, y, operator, Result, fnOut}) => {
+const Sum_SubstractSolutionArea = ({x, y, type, operator, Result, fnOut}) => {
 
     const [counter, setcounter] = useState(1)
     const [X1, setX1] = useState("")
@@ -69,12 +69,14 @@ const SolutionArea = ({x, y, operator, Result, fnOut}) => {
 
     const Finish = () => {
         fnOut()
-        setcounter(1)
-        setShowZ1(false)
+        setTimeout(() => {
+            setcounter(1)
+            setShowZ1(false)
         setShowZ2(false)
         setShowZ3(false)
         setShowZ4(false)
         setShowZ5(false)
+        }, 500);
     }
 
     useEffect(() => {
@@ -91,34 +93,61 @@ const SolutionArea = ({x, y, operator, Result, fnOut}) => {
         var y3 = Math.floor((y%1000) / 100)
         var x4 = Math.floor((x%10000) / 1000)
         var y4 = Math.floor((y%10000) / 1000)
-        var z1 = x1 + y1
-        var z2 = x2 + y2
-        var z3 = x3 + y3
-        var z4 = x4 + y4
         var z5 = 0
         var a1 = 0
         var a2 = 0
         var a3 = 0
         var a4 = 0
-        if (z1 >= 10 && z1 < 20) {
-            z1 -= 10
-            z2 += 1
-            ++a1
+        if (type === "sumas") {
+            var z1 = x1 + y1
+            var z2 = x2 + y2
+            var z3 = x3 + y3
+            var z4 = x4 + y4
+            if (z1 >= 10 && z1 < 20) {
+                z1 -= 10
+                z2 += 1
+                ++a1
+            }
+            if (z2 >= 10 && z2 < 20){
+                z2 -= 10
+                z3 += 1
+                ++a2
+            }
+            if (z3 >= 10 && z3 < 20) {
+                z3 -= 10
+                z4 += 1
+                ++a3
+            }
+            if (z4 >= 10 && z4 < 20){
+                z4 -= 10
+                z5 += 1
+                ++a4
+            }
         }
-        if (z2 >= 10 && z2 < 20){
-            z2 -= 10
-            z3 += 1
-            ++a2
-        }
-        if (z3 >= 10 && z3 < 20) {
-            z3 -= 10
-            z4 += 1
-            ++a3
-        }
-        if (z4 >= 10 && z4 < 20){
-            z4 -= 10
-            z5 += 1
-            ++a4
+        else if (type === "restas") {
+            var z1 = x1 - y1
+            var z2 = x2 - y2
+            var z3 = x3 - y3
+            var z4 = x4 - y4
+            if (z1 < 0) {
+                z1 += 10
+                z2 -= 1
+                ++a1
+            }
+            if (z2 < 0) {
+                z2 += 10
+                z3 -= 1
+                ++a2
+            }
+            if (z3 < 0) {
+                z3 += 10
+                z4 -= 1
+                ++a3
+            }
+            if (z4 < 0) {
+                z4 += 10
+                ++a4
+            }
         }
         setX1(x1)
         setX2(x2)
@@ -137,7 +166,7 @@ const SolutionArea = ({x, y, operator, Result, fnOut}) => {
         setA2(a2)
         setA3(a3)
         setA4(a4)
-    }, [x, y, operator, Result])
+    }, [x, y, Result, operator])
 
     return <Div>
             <article>
@@ -176,11 +205,11 @@ const SolutionArea = ({x, y, operator, Result, fnOut}) => {
             }
             {
                 counter < Max ?
-                 <button onClick={() => siguientePaso(counter)}>Siguiente</button> 
+                <button onClick={() => siguientePaso(counter)}>{counter === 1 ? "Ver solución" : "Siguiente"}</button> 
                  : 
-                 <button onClick={Finish}>Salir</button>
+                 <button onClick={Finish} style={{background:"#33B5FF"}}>Volver</button>
             }
         </Div>
 }
 
-export default SolutionArea
+export default Sum_SubstractSolutionArea

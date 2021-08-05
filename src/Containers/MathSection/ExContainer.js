@@ -10,7 +10,8 @@ import useKeypress from "react-use-keypress"
 import Check from "./check.png"
 import Wrong from "./wrong.png"
 import InputArea from './InputArea/InputArea'
-import SolutionArea from './SolutionsArea/SolutionArea'
+import Sum_SubstractSolutionArea from './SolutionsArea/Sum&SubstractSolutionArea'
+import MultiplicationSolutionArea from './SolutionsArea/MultiplicationsSolutionArea'
 
 const Accordeon = styled.div`
 position: relative;
@@ -128,7 +129,7 @@ border-radius: 5px;
 padding: 20px;
 width: clamp(350px, 40vw, 40vw);
 p{
-    font-size: 30px;
+    font-size: 35px;
     color: gold;
     padding: 0 0 15px 0;
 }
@@ -309,6 +310,14 @@ const ExContainer = () => {
 
     const WasIncorrect = () => {
         setShowResults(false)
+        setValue("")
+        setValue2("")
+        setValue3("")
+        setValue4("")
+        setValue5("")
+        setValue6("")
+        setValue7("")
+        setValue8("")
     }
     const SetLevel = (param, param2) => {
         setLevel(param)
@@ -342,7 +351,6 @@ const ExContainer = () => {
 
     const AvSolution = () => {
         setShowSolution(true)
-        console.log("Xd")
     }
     const SolutionOut = () => {
         setShowSolution(false)
@@ -355,7 +363,6 @@ const ExContainer = () => {
         setValue6("")
         setValue7("")
         setValue8("")
-        setCounterCorrect(CounterCorrect)
     }
 
     useKeypress(["Enter"],(event) => {
@@ -443,7 +450,12 @@ const ExContainer = () => {
                 Loading && <LoadingContainer/>
             }
             <SolutionBox isIn={ShowSolution}>
-                <SolutionArea x={valor1} y={valor2} operator={Operator} Result={FinalResult} fnOut={SolutionOut}/>
+                {
+                    (type === "sumas" || type === "restas") && <Sum_SubstractSolutionArea x={valor1} y={valor2} operator={Operator} type={type} Result={FinalResult} fnOut={SolutionOut}/>
+                } 
+                {
+                    type === "multiplicaciones" && <MultiplicationSolutionArea x={valor1} y={valor2} Result={FinalResult} fnOut={SolutionOut}/> 
+                }
             </SolutionBox>
        <ResultsBox className={ShowResults ? "active-results" : "results"}>
                <div>
@@ -454,7 +466,7 @@ const ExContainer = () => {
                }
                <button onClick={AnsWasCorrect ? addCorrect : WasIncorrect}>{AnsWasCorrect ? "Siguiente ejercicio" : "Intenta de nuevo"}</button>
                {
-                   !AnsWasCorrect && type === "sumas" && <button onClick={AvSolution} style={{marginTop:"20px", background:"white", color:"#305cae"}}>
+                   !AnsWasCorrect && (type === "sumas" || type === "restas" || type === "multiplicaciones") && <button onClick={AvSolution} style={{marginTop:"20px", background:"white", color:"#305cae"}}>
                        Aprende a resolverlo
                     </button>
                }
@@ -542,28 +554,7 @@ const ExContainer = () => {
            <Button onClick={CheckAnswer}>
                Comprobar
            </Button>
-           {/* <div>
-           <button disabled={InvalidateSofter} onClick={() => ChangeLevel(-1)}>Disminuir dificultad</button>
-           <button disabled={InvalidateHarder} onClick={() => ChangeLevel(1)}>Aumentar dificultad</button>
-           </div> */}
        </Article>
-        {/* <div className="explanation">
-            <h2>Aprende a resolver ejercicios de {type} con números de {Title} cifra{S && "s"}.</h2>
-            <p>Ejemplo: </p>
-            <h1>{Ex1} {Operator} {Ex2}</h1>
-            {/* {
-                Explanation === 1 && <div>
-                    <p>Para resolver un ejercicio de sumas tenemos que añadir ambas cantidades para obtener el resultado final.</p>
-                    <p>Puedes ayudarte usando los dedos de tu mano.</p>
-                    <h2>{Ex1} + {Ex2} = {Ex1    + Ex2}</h2>
-                </div>
-            } */}
-            {/* {
-                Explanation === 2 && <div>
-                    <p>Primero que nada, debemos sumar los primeros cifras de la operación</p>
-                </div>
-            } 
-        </div> */}
        </main>
     </div>
 }
