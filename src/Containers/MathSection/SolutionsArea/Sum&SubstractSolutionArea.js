@@ -190,7 +190,7 @@ const Sum_SubstractSolutionArea = ({x, y, type, operator, Result, fnOut}) => {
                 </span>
             </article>
             {
-                ShowZ5 ? <span>
+                ShowZ1 ? <span>
                 {
                     ShowZ5 && Z5 != 0 && Z5
                 }
