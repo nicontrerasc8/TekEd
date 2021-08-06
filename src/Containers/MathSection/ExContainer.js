@@ -12,6 +12,7 @@ import Wrong from "./wrong.png"
 import InputArea from './InputArea/InputArea'
 import Sum_SubstractSolutionArea from './SolutionsArea/Sum&SubstractSolutionArea'
 import MultiplicationSolutionArea from './SolutionsArea/MultiplicationsSolutionArea'
+import DivisionSolutionArea from './SolutionsArea/DivisionSolutionArea'
 
 const Accordeon = styled.div`
 position: relative;
@@ -287,8 +288,6 @@ const ExContainer = () => {
     const [AnsWasCorrect, setAnsWasCorrect] = useState(false)
     const [Operator, setOperator] = useState("")
     const {type} = useParams()
-    const [Ex1, setEx1] = useState(0)
-    const [Ex2, setEx2] = useState(0)
     const [Level, setLevel] = useState(1)
     const [Level2, setLevel2] = useState(1)
 /*     const [InvalidateHarder, setInvalidateHarder] = useState(false)
@@ -412,6 +411,8 @@ const ExContainer = () => {
             setOperator("x")
         }
         else if(type === "divisiones") {
+            setLevel(2)
+            setLevel2(1)
             do {
                 v1 = Math.floor(Math.random() * (Math.pow(10, Level) - 2) + 2);
                 v2 = Math.floor(Math.random() * (Math.pow(10, Level2) - 2) + 2);
@@ -456,6 +457,9 @@ const ExContainer = () => {
                 {
                     type === "multiplicaciones" && <MultiplicationSolutionArea x={valor1} y={valor2} Result={FinalResult} fnOut={SolutionOut}/> 
                 }
+                {
+                    type === "divisiones" && <DivisionSolutionArea x={valor1} y={valor2} Result={FinalResult} fnOut={SolutionOut}/>
+                }
             </SolutionBox>
        <ResultsBox className={ShowResults ? "active-results" : "results"}>
                <div>
@@ -466,7 +470,7 @@ const ExContainer = () => {
                }
                <button onClick={AnsWasCorrect ? addCorrect : WasIncorrect}>{AnsWasCorrect ? "Siguiente ejercicio" : "Intenta de nuevo"}</button>
                {
-                   !AnsWasCorrect && (type === "sumas" || type === "restas" || type === "multiplicaciones") && <button onClick={AvSolution} style={{marginTop:"20px", background:"white", color:"#305cae"}}>
+                   !AnsWasCorrect && <button onClick={AvSolution} style={{marginTop:"20px", background:"white", color:"#305cae"}}>
                        Aprende a resolverlo
                     </button>
                }

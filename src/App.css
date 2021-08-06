@@ -140,3 +140,15 @@ border-radius: 5px;
 .light-colored{
   color: #b6fbfb;
 }
+.start-finish-btn{
+  background-color: rgb(255, 255, 255);
+  color: #274C90;
+}
+.next-btn{
+  background:#33B5FF;
+  color: white;
+}
+.divisor{
+  border-left: 3px solid;
+  border-bottom: 3px solid;
+}

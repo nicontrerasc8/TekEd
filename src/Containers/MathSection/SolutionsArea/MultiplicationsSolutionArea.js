@@ -19,8 +19,6 @@ span{
 }
 button{
    margin-top: 20px;
-   background-color: #b6fbfb83;
-   color: white;
    font-family: "Kufam", cursive;
    padding: 10px;
    border-radius: 5px;
@@ -193,9 +191,9 @@ const MultiplicationSolutionArea = ({x, y, Result, fnOut}) => {
            }
            {
                counter <= Max ?
-               <button onClick={() => siguientePaso(counter)}>{counter === 1 ? "Ver solución" : "Siguiente"}</button>
+               <button onClick={() => siguientePaso(counter)} className={counter === 1 ? "start-finish-btn" : "next-btn"}>{counter === 1 ? "Ver solución" : "Siguiente"}</button>
                 :
-                <button onClick={Finish} style={{background:"#33B5FF"}}>Volver</button>
+                <button onClick={Finish} className="start-finish-btn">Volver</button>
            }
        </Div>
 }
