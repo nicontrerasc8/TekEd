@@ -224,10 +224,6 @@ background-color: #305cae;
 
 const Info = [
     {
-        fn1: 1,
-        fn2: 1, 
-    },
-    {
         fn1: 2,
         fn2: 1, 
     },
@@ -480,6 +476,19 @@ const ExContainer = () => {
            <LinkButton path={"/matematica/" + type} text="Elige la dificultad" callback={() => setChooseLevel(!ChooseLevel)}/>
           {
               ChooseLevel &&  <article className="buttons">
+                 {
+                     Operator != "÷" &&  <button onClick={() => SetLevel(1,1)}>
+                     <div>
+                       <span>8</span>
+                       <span>{Operator}&#160;2</span>
+                     </div>
+                     <p>
+                          1 cifra&#160; 
+                           {Operator}
+                           &#160;1 cifra
+                          </p>
+                 </button>
+                 }
               {
                   Info && Info.map((data, idx) => {
                       return <button key={idx}
