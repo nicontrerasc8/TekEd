@@ -12,16 +12,17 @@
     opacity: 0;
   }
 .message{
-    background-color: #274C90;
     padding: 30px;
-    border: 3px solid #b6fbfb83;
     border-radius: 10px;
     text-align: center;
-    width: clamp(320px, 60vw, 60vw);
     margin-top: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .message h3{
-    font-size: clamp(40px, calc(3vw+4vh), calc(3vw+34vh));
+    font-size: clamp(35px, calc(3vw+4vh), calc(3vw+34vh));
+    background-color: #305cae;
 }
 .message p{
     margin-top: 20px;

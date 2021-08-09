@@ -30,7 +30,7 @@ background-color:rgba(250,250,250, .05);
 `
 
 
-const InitNavBar = ({isEx, isHow}) => {
+const InitNavBar = ({isHome, isHow, Path, isGoBack}) => {
    const matches = useMediaQuery('(max-width:950px)');
    const [navStatus, setNavStatus] = useState(false)
    const [navSolidColor, setNavSolidColor] = useState(false)
@@ -58,7 +58,10 @@ const InitNavBar = ({isEx, isHow}) => {
          </Link>
          <div>
          {
-             isEx && <LinkButton path="/matematica" text="🏠" fontSize="clamp(25px, calc(2vh + 1vw), calc(2vh + 2vw + 10px))" width="80px"/>
+             isGoBack && <LinkButton text={<i class="fas fa-arrow-left"></i>} path={Path} fontSize="clamp(25px, calc(2vh + 1vw), calc(2vh + 2vw + 10px))" width="75px"/>
+          }
+         {
+             isHome && <LinkButton path="/" text="🏠" fontSize="clamp(25px, calc(2vh + 1vw), calc(2vh + 2vw + 10px))" width="80px"/>
           }
           {
              isHow && <LinkButton text="?" fontSize="clamp(30px, calc(2vh + 1vw), calc(2vh + 2vw + 10px))" width="clamp(70px, calc(2vh + 2vw + 20px) ,calc(2vh + 2vw + 20px))"/>

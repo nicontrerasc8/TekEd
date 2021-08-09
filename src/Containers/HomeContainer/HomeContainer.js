@@ -1,55 +1,106 @@
 import React,{useEffect, useState} from 'react'
 import "./Home.css"
 import styled from "styled-components";
-import img from "./LandingBackground.png"
+import Tablas from "./tablas.gif"
 import {motion} from "framer-motion"
-import SelectArea from "./SelectArea/SelectArea"
 import { animationOne, animationThree, animationTwo, transitionTwoSecs, transitionOneSec } from '../../animations';
-import LinkButton from '../../StyledComponents/Button/LinkButton';
+import CombinadasIMG from "../MathSection/Combinadas.png"
 import InitNavBar from '../NavBarContainer/NavBarContainer';
 import LoadingContainer from '../../Components/LoadingContainer';
+import { StyledBackground } from '../../StyledComponents/StyledBackground';
+import { Link } from 'react-router-dom';
+import Aos from "aos"
+import "aos/dist/aos.css"
 
-const Landing = styled.div `
-height: 100vh;
-background-image: url(${img});
-`
 const Container = styled.div `display: flex;
+position: relative;
+z-index: 2;
+display: flex;
+flex-direction: column;
 justify-content: center;
 align-items: center;
 padding: 20px 7vw;
 color: white;
+margin-top: 1rem;
 grid-gap: 10px;
-height: 100%;
 font-family: "Kufam", cursive;
+   section{
+      display: flex;
+      flex-wrap:wrap;
+      overflow: hidden;
+      width: 100%;
+      grid-gap: 20px;
+      align-items: center;
+      justify-content: center;
+         article{
+            text-align: center;
+            background-color: #274C90;
+            border: 3px solid #b6fbfb80;
+            border-radius: 5px;
+            padding: 20px 5% 40px 5%;
+            font-size: clamp(25px, calc(2vw + 2vh - 15px), calc(2vw + 2vh - 15px));
+            width: clamp(320px, 49%, 45%);
+               img{
+                  width: 70%;
+                  border-radius: 5px;
+               }
+               p{
+                  margin: 10px 0 30px 0;
+               }
+               a{
+                  padding: 10px 20px;
+                  color: white;
+                  background-color: #305cae;
+                  border-radius: 5px;
+               }
+         }
+   }
 `
+
+const SectionData = [
+   {
+      img: CombinadasIMG,
+      texto: "Sumas, restas, multiplicaciones y divisiones",
+      link: "/matematica",
+   },
+   {
+      img:Tablas,
+      texto: "Tablas de multiplicar del 1 al 20",
+      link: "/tablas-de-multiplicar"
+   }
+]
+
 const HomeContainer = () => {
 
-   const [ChooseArea, setChooseArea] = useState(false)
    const [Loading, setLoading] = useState(true)
    useEffect(() => {
+      Aos.init({duration :2000, once:true})
       setTimeout(() => {
          setLoading(false)
       }, 3000);
    }, [])
-   const showChooseArea = () => {
-      setChooseArea(!ChooseArea)
-   }
 
    return (
             Loading ? <LoadingContainer/> :  <div>
             <InitNavBar/>
-            <Landing>
-            {/* <SelectArea setAvailable={ChooseArea} change={showChooseArea}/> */}
+            <StyledBackground/>
                <Container>
                   <motion.div initial="out" transition={transitionTwoSecs} animate="in" exit="out" variants={animationOne} className="message">
-                     <h3>Aprende matemáticas <br/> a tu propio ritmo.</h3>
-                     <p style={{marginBottom:"20px"}}>TekEd es una plataforma online donde estudiantes pueden reforzar sus conocimientos y aprender algo nuevo en matemáticas.</p>
-                     <motion.div initial="out" animate="end" exit="out" variants={animationThree} transition={transitionOneSec}>
-                     <LinkButton path="/matematica" fontSize="calc(10px + 1vh)" width="clamp(220px, 30%, 30%)" text="Empieza dando click aquí"/>
-                     </motion.div>
+                     <h3>Diviértete y aprende con juegos de matemática.</h3>
                   </motion.div>
+                  <section>
+                     {
+                        SectionData && SectionData.map((data, idx) => {
+                           return <article data-aos="fade-right" key={idx}>
+                              <img src={data.img}/>
+                              <p>
+                              {data.texto}.</p>
+                              <Link to={data.link}>Elegir</Link>
+                           </article>
+                        })
+                     }
+                  </section>
                </Container>
-            </Landing>
             </div>
    )
 }

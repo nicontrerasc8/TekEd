@@ -42,15 +42,14 @@ const MultiplicationSolutionArea = ({x, y, Result, fnOut}) => {
    const [Z3, setZ3] = useState(0)
    const [Z4, setZ4] = useState(0)
    const [Z5, setZ5] = useState(0)
-   const [A1, setA1] = useState("")
-   const [A2, setA2] = useState("")
-   const [A3, setA3] = useState("")
-   const [A4, setA4] = useState("")
    const [ShowZ1, setShowZ1] = useState(false)
    const [ShowZ2, setShowZ2] = useState(false)
    const [ShowZ3, setShowZ3] = useState(false)
    const [ShowZ4, setShowZ4] = useState(false)
    const [ShowZ5, setShowZ5] = useState(false)
+   const [ShowZ6, setShowZ6] = useState(false)
+   const [ShowZ7, setShowZ7] = useState(false)
+   const [ShowZ8, setShowZ8] = useState(false)
    const [Max, setMax] = useState(0)
  
    const siguientePaso = (num) => {
@@ -79,6 +78,9 @@ const MultiplicationSolutionArea = ({x, y, Result, fnOut}) => {
        setShowZ3(false)
        setShowZ4(false)
        setShowZ5(false)
+       setShowZ6(false)
+       setShowZ7(false)
+       setShowZ8(false)
        }, 500);
    }
  
@@ -108,7 +110,6 @@ const MultiplicationSolutionArea = ({x, y, Result, fnOut}) => {
            z4 -= 10
            z5 += 1
           }
-  
        setX(x)
        setY1(y1)
        setY2(y2)
@@ -122,17 +123,12 @@ const MultiplicationSolutionArea = ({x, y, Result, fnOut}) => {
        if (y < 10) setMax(1)
        else if (y >= 10 && y < 100) setMax(2)   
        else if (y >= 100 && y < 1000) setMax(3)
-       else setMax(4)
+       else if (y >= 1000 && y < 10000) setMax(4)
+       else setMax(8)
    }, [x, y, Result])
  
    return <Div>
            <article>
-                   <div>
-                       {(ShowZ4 && A4 != 0) ? A4 : <Space/>}
-                       {(ShowZ3 && A3 != 0) ? A3 : <Space/>}
-                       {(ShowZ2 && A2 != 0) ? A2 : <Space/>}
-                       {(ShowZ1 && A1 != 0) ? A1 : <Space/>}&#160;&#160;
-                   </div>
                <span>
                    {X}
                </span>
@@ -189,9 +185,10 @@ const MultiplicationSolutionArea = ({x, y, Result, fnOut}) => {
                { Z4+Z3+Z2+Z1}
            </span> 
            }
+
            {
                counter <= Max ?
-               <button onClick={() => siguientePaso(counter)} className={counter === 1 ? "start-finish-btn" : "next-btn"}>{counter === 1 ? "Ver solución" : "Siguiente"}</button>
+               <button onClick={() => siguientePaso(counter)} className={counter === 1 ? "start-finish-btn" : "next-btn"}>{counter === Max ? "Ver respuesta" : counter === 1 ? "Ver solución" : "Siguiente paso"}</button>
                 :
                 <button onClick={Finish} className="start-finish-btn">Volver</button>
            }

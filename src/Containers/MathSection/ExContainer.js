@@ -286,9 +286,7 @@ const ExContainer = () => {
     const {type} = useParams()
     const [Level, setLevel] = useState(1)
     const [Level2, setLevel2] = useState(1)
-/*     const [InvalidateHarder, setInvalidateHarder] = useState(false)
-    const [InvalidateSofter, setInvalidateSofter] = useState(false) */
-        const [ChooseLevel, setChooseLevel] = useState(true)
+    const [ChooseLevel, setChooseLevel] = useState(true)
 
     const addCorrect = () => {
         setCounterCorrect(CounterCorrect+1)
@@ -470,7 +468,7 @@ const ExContainer = () => {
                        Aprende a resolverlo
                     </button>
                }
-           </div>
+                </div>
            </ResultsBox>
            <Accordeon>
            <LinkButton path={"/matematica/" + type} text="Elige la dificultad" callback={() => setChooseLevel(!ChooseLevel)}/>
@@ -579,7 +577,7 @@ const ExAreaContainer = () => {
     return (
         <div>
             <StyledBackground/>
-            <InitNavBar isEx={true}/>
+            <InitNavBar isGoBack={true} Path="/matematica" isHome={true}/>
             <ExContainer/>
         </div>
     )

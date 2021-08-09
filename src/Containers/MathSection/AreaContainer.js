@@ -7,6 +7,7 @@ import SumIMG from "./sum.png"
 import MinIMG from "./minus.png"
 import DivImg from "./div.png"
 import TimesIMG from "./times.png"
+import CombinadasIMG from "./Combinadas.png"
 import LoadingContainer from '../../Components/LoadingContainer'
 
 const Div = styled.div`
@@ -52,7 +53,7 @@ justify-content: center;
 margin: 0 1%;
 padding: 20px 5%;
 border-radius: 5px;
-border: 2px solid #b6fbfb83;
+border: 4px solid #b6fbfb83;
 width: clamp(300px, 30%, 30%);
 h3{
     font-size: clamp(30px, calc(2vw+2vh+20px), calc(2vw+2vh+20px));
@@ -110,7 +111,7 @@ const AreaContainer = () => {
     return (
         <div>
             <StyledBackground/>
-            <InitNavBar/>
+            <InitNavBar isHome={true} HomePath="/"/>
             {Loading && <LoadingContainer/>}
             <Div>
                 <StyledList>
@@ -123,6 +124,11 @@ const AreaContainer = () => {
                         </StyledArticle>
                     }) 
                     }
+                    {/* <StyledArticle>
+                            <img src={CombinadasIMG}/>
+                            <h3>Operaciones combinadas</h3>
+                            <LinkButton path="/matematica/operaciones-combinadas" text="Elegir" fontSize="25px"/>
+                    </StyledArticle> */}
                 </StyledList>
             </Div>
         </div>
