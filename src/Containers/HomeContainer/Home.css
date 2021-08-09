@@ -21,7 +21,7 @@
     align-items: center;
 }
 .message h3{
-    font-size: clamp(35px, calc(3vw+4vh), calc(3vw+34vh));
+    font-size: clamp(35px, calc(2vw + 3vh), calc(2vw + 3vh));
     background-color: #305cae;
 }
 .message p{
