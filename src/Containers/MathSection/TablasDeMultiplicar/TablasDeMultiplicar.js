@@ -56,7 +56,7 @@ const TablasDeMultiplicar = () => {
     return (
         <div>
             <StyledBackground/>
-            <InitNavBar isHome={true} HomePath="/"/>
+            <InitNavBar isHome={true} isGoBack={true} Path="/tablas-de-multiplicar"/>
                 <Container>
                     {
                         ArrayOfNum && ArrayOfNum.map((data, idx) => {

@@ -471,7 +471,7 @@ const ExContainer = () => {
                 </div>
            </ResultsBox>
            <Accordeon>
-           <LinkButton path={"/matematica/" + type} text="Elige la dificultad" callback={() => setChooseLevel(!ChooseLevel)}/>
+           <LinkButton path={"/operaciones-simples/" + type} text="Elige la dificultad" callback={() => setChooseLevel(!ChooseLevel)}/>
           {
               ChooseLevel &&  <article className="buttons">
                  {
@@ -577,7 +577,7 @@ const ExAreaContainer = () => {
     return (
         <div>
             <StyledBackground/>
-            <InitNavBar isGoBack={true} Path="/matematica" isHome={true}/>
+            <InitNavBar isGoBack={true} Path="/operaciones-simples" isHome={true}/>
             <ExContainer/>
         </div>
     )

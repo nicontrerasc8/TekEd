@@ -21,10 +21,10 @@ function App() {
           <Route exact path='/'>
            <HomeContainer/>
           </Route>
-          <Route exact path="/matematica">
+          <Route exact path="/operaciones-simples">
             <MathAreaContainer/>  
           </Route>
-          <Route exact path="/matematica/:type">
+          <Route exact path="/operaciones-simples/:type">
             <ExAreaContainer/>
           </Route>
           <Route exact path="/operaciones-con-3-numeros">

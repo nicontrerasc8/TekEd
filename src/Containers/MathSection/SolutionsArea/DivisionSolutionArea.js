@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Div = styled.div`
@@ -53,6 +54,7 @@ const DivisionSolutionArea = ({ x, y, Result, fnOut }) => {
     const [X, setX] = useState("")
     const [Y, setY] = useState("")
     const [Z, setZ] = useState("")
+    const {type} = useParams()
     const [ShowZ, setShowZ] = useState(false)
 
 
@@ -73,7 +75,7 @@ const DivisionSolutionArea = ({ x, y, Result, fnOut }) => {
         setY(y)
         setZ(z)
 
-    }, [x, y, Result])
+    }, [x, y, Result, type])
 
     return <Div>
         {

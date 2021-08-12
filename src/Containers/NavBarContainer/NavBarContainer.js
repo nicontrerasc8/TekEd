@@ -1,10 +1,8 @@
 import React,{useEffect, useState} from 'react'
 import "./nav.css"
 import {Link} from "react-router-dom"
-import { Links, MathLinks, ScienceLinks } from './Data/Data'
 import styled from "styled-components";
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { rgbToHex } from '@material-ui/core';
 import LinkButton from '../../StyledComponents/Button/LinkButton';
 
 // Styled component named StyledButton
@@ -38,7 +36,6 @@ const InitNavBar = ({isHome, isHow, Path, isGoBack}) => {
    const ChangeNavUseState = () => {
       setNavStatus(!navStatus)
    }
-   const [LinkData, setLinkData] = useState(Links)
    useEffect(()=>{
       const HandleScroll = () => {
           setNavSolidColor(window.scrollY > 10)

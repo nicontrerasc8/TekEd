@@ -8,6 +8,7 @@ import SumIMG from "../sum.png"
 import MinIMG from "../minus.png"
 import DivImg from "../div.png"
 import TimesIMG from "../times.png"
+import { Link } from 'react-router-dom'
 
 const Div = styled.div`
 position: relative;
@@ -39,6 +40,9 @@ margin: 30px 5vw;
 h3{
     margin-bottom: 20px;
 }
+a{
+    width: clamp(300px, 30%, 30%);
+}
 `
 
 const StyledArticle = styled.article`
@@ -53,7 +57,6 @@ margin: 0 1%;
 padding: 20px 5%;
 border-radius: 5px;
 border: 4px solid #b6fbfb83;
-width: clamp(300px, 30%, 30%);
 h3{
     font-size: clamp(30px, calc(2vw+2vh+20px), calc(2vw+2vh+20px));
 };
@@ -65,10 +68,22 @@ p{
     }
 }
 span{
-    color: rgb(0,220,240);
-}
+    background:#3077ae;
+    padding: 10px;
+    border: 4px solid transparent;
+    transition: 1s;
+    font-size: clamp(25px, calc(2vw + 2vh - 15px), calc(2vw + 2vh - 15px));
+    border-radius: 5px;
+ }
+ transition: 1s;
+ &:hover{
+    background: #3060ae;
+    span{
+        border: 4px solid #b6fbfb83;
+    }
+ }
 img{
-    width: 200px;
+    width: 50%;
     margin-bottom: 40px;
 }
 `
@@ -111,17 +126,19 @@ const ThreeNum = () => {
                 <StyledList>
                     {
                        Values && Values.map((data, idx) => {
-                        return <StyledArticle key={idx}>
+                        return <Link to={"/operaciones-con-3-numeros/" + data.path}>
+                             <StyledArticle key={idx}>
                             <img src={data.img}/>
                             <h3>{data.text}</h3>
-                            <LinkButton path={"/operaciones-con-3-numeros/" + data.path} text="Elegir" fontSize="25px"/>
+                            <span>Elegir</span>
                         </StyledArticle>
+                        </Link>
                     }) 
                     }
                     {/* <StyledArticle>
                             <img src={CombinadasIMG}/>
                             <h3>Operaciones combinadas</h3>
-                            <LinkButton path="/matematica/operaciones-combinadas" text="Elegir" fontSize="25px"/>
+                            <LinkButton path="/operaciones-simples/operaciones-combinadas" text="Elegir" fontSize="25px"/>
                     </StyledArticle> */}
                 </StyledList>
             </Div>

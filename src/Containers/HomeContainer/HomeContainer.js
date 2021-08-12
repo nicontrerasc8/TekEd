@@ -32,27 +32,46 @@ font-family: "Kufam", cursive;
       grid-gap: 20px;
       align-items: center;
       justify-content: center;
-         article{
-            text-align: center;
-            background-color: #274C90;
-            border: 3px solid #b6fbfb80;
-            border-radius: 5px;
-            padding: 20px 5% 40px 5%;
-            font-size: clamp(25px, calc(2vw + 2vh - 15px), calc(2vw + 2vh - 15px));
-            width: clamp(320px, 49%, 45%);
-               img{
-                  width: 70%;
-                  border-radius: 5px;
-               }
-               p{
-                  margin: 10px 0 30px 0;
-               }
-               a{
-                  padding: 10px 20px;
-                  color: white;
-                  background-color: #305cae;
-                  border-radius: 5px;
-               }
+         a{
+            width: clamp(320px, 40%, 40%);
+            color: white;
+            article{
+               transition:1s;
+               text-align: center;
+               background-color: #274C90;
+               border: 3px solid #b6fbfb80;
+               border-radius: 5px;
+               padding: 20px 5% 40px 5%;
+               width: 100%;
+               font-size: clamp(25px, calc(2vw + 2vh - 15px), calc(2vw + 2vh - 15px));
+                  img{
+                     width: 60%;
+                     border-radius: 5px;
+                  }
+                  p{
+                     margin: 10px 0 30px 0;
+                  }
+                  a{
+                     padding: 10px 20px;
+                     color: white;
+                     background-color: #305cae;
+                     border-radius: 5px;
+                  }
+                  span{
+                     background:#3077ae;
+                     padding: 10px;
+                     border: 4px solid transparent;
+                     border-radius: 5px;
+                     transition: 1s;
+                  }
+                  &:hover{
+                     transition: 1s;
+                     background: #3060ae;
+                     span{
+                        border: 4px solid #b6fbfb83;
+                     }
+                  }
+            }
          }
    }
 `
@@ -61,7 +80,7 @@ const SectionData = [
    {
       img: CombinadasIMG,
       texto: "Sumas, restas, multiplicaciones y divisiones",
-      link: "/matematica",
+      link: "/operaciones-simples",
    },
    {
       img:Tablas,
@@ -96,12 +115,15 @@ const HomeContainer = () => {
                   <section>
                      {
                         SectionData && SectionData.map((data, idx) => {
-                           return <article data-aos="fade-right" key={idx}>
-                              <img src={data.img}/>
-                              <p>
-                              {data.texto}.</p>
-                              <Link to={data.link}>Elegir</Link>
+                           return <Link to={data.link} key={idx}>
+                           <article data-aos="fade-right">
+                                 <img src={data.img}/>
+                                 <p>
+                                    {data.texto}.
+                                 </p>
+                                 <span>Elegir</span>
                            </article>
+                           </Link>
                         })
                      }
                   </section>

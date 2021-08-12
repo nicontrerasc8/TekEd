@@ -283,7 +283,7 @@ const TablaContainer = () => {
     }, [rango, number, CounterCorrect])
 
     return <div>
-            <InitNavBar isGoBack={true} Path="/tablas-de-multiplicar" isHome={true}/>
+            <InitNavBar isGoBack={true} Path={"/tablas-de-multiplicar/" + rango} isHome={true}/>
             <StyledBackground/>
             <SolutionBox isIn={ShowSolution}>
                  <MultiplicationSolutionArea x={Y} y={number} Result={Z} fnOut={SolutionOut}/> 

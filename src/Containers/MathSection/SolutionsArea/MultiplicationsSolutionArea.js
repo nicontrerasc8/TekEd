@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
  
 const Div = styled.div`
@@ -31,6 +32,7 @@ const Space = () => {
  
 const MultiplicationSolutionArea = ({x, y, Result, fnOut}) => {
  
+    const {type} = useParams()
    const [counter, setcounter] = useState(1)
    const [X, setX] = useState(0)
    const [Y1, setY1] = useState(0)
@@ -125,7 +127,7 @@ const MultiplicationSolutionArea = ({x, y, Result, fnOut}) => {
        else if (y >= 100 && y < 1000) setMax(3)
        else if (y >= 1000 && y < 10000) setMax(4)
        else setMax(8)
-   }, [x, y, Result])
+   }, [x, y, Result, type])
  
    return <Div>
            <article>
