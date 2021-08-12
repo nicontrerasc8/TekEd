@@ -65,7 +65,7 @@ const SectionData = [
    },
    {
       img:Tablas,
-      texto: "Tablas de multiplicar del 1 al 20",
+      texto: "Tablas de multiplicar",
       link: "/tablas-de-multiplicar"
    },
    {

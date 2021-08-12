@@ -181,8 +181,26 @@ transition: 1s;
 background-color: #305cae;
 `
 
+const TableOfMultiplications = ({number}) => {
+    var Arr = []
+    const [Numbers, setNumbers] = useState([])
+    const {rango} = useParams()
 
-const Numbers = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+    useEffect(() => {
+        for (let i = 1; i <= rango; i++) {
+            Arr.push(i)
+            setNumbers(Arr)
+        }
+    }, [rango])
+
+    return <Table>
+        {
+            Numbers && Numbers.map((x, idx) => {
+                return <p key={idx}>{number} x {x} = {number*x}</p>
+            })
+        } 
+    </Table>
+} 
 
 const TablaContainer = () => {
 
@@ -197,12 +215,10 @@ const TablaContainer = () => {
     const [Value2, setValue2] = useState("")
     const [Value3, setValue3] = useState("")
 
-    const [Answer, setAnswer] = useState("")
-
     const [ShowPractice, setShowPractice] = useState(true)
     const [ShowTable, setShowTable] = useState(false)
 
-    const {number} = useParams()
+    const {rango, number} = useParams()
     const {CounterCorrect, setCounterCorrect} = useAppContext()
 
     const addCorrect = () => {
@@ -259,12 +275,12 @@ const TablaContainer = () => {
     }
 
     useEffect(() => {
-        var y = Math.floor(Math.random() * (20 - 1) +1)
+        var y = Math.floor(Math.random() * (rango - 1) + 1)
         var z = y * number
         setY(y)
         setZ(z)
         return () => 0
-    }, [number, CounterCorrect])
+    }, [rango, number, CounterCorrect])
 
     return <div>
             <InitNavBar isGoBack={true} Path="/tablas-de-multiplicar" isHome={true}/>
@@ -315,13 +331,7 @@ const TablaContainer = () => {
                 }
 
                 {
-                    ShowTable && <Table>
-                    {
-                        Numbers && Numbers.map((x, idx) => {
-                            return <p key={idx}>{number} x {x} = {number*x}</p>
-                        })
-                    } 
-                </Table>
+                    ShowTable && <TableOfMultiplications number={number}/>
                 }
             </Container>
         </div>

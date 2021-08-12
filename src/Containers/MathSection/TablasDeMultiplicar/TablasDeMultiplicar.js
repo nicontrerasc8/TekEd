@@ -1,5 +1,6 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import { useEffect } from 'react'
+import { Link, useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { StyledBackground } from '../../../StyledComponents/StyledBackground'
 import InitNavBar from '../../NavBarContainer/NavBarContainer'
@@ -41,17 +42,25 @@ z-index: 2;
     }
 `
 
-const Numbers = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
 
 const TablasDeMultiplicar = () => {
+    var Arr = []
+    const [ArrayOfNum, setArrayOfNum] = useState([])
+    const {rango} = useParams()
+    useEffect(() => {
+        for (let i = rango-9; i <= rango; i++) {
+            Arr.push(i)
+            setArrayOfNum(Arr)
+        }
+    }, [rango])
     return (
         <div>
             <StyledBackground/>
             <InitNavBar isHome={true} HomePath="/"/>
                 <Container>
                     {
-                        Numbers && Numbers.map((data, idx) => {
-                            return <Link key={idx} to={"/tablas-de-multiplicar/" + data}>
+                        ArrayOfNum && ArrayOfNum.map((data, idx) => {
+                            return <Link key={idx} to={"/tablas-de-multiplicar/" + rango + "/" + data}>
                                 <span>{data}</span>
                                 <p>Tabla del {data}</p>
                             </Link>

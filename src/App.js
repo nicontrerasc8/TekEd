@@ -10,6 +10,7 @@ import TablasDeMultiplicar from './Containers/MathSection/TablasDeMultiplicar/Ta
 import TablaContainer from './Containers/MathSection/TablasDeMultiplicar/TablaContainer';
 import ThreeNum from './Containers/MathSection/ThreeNum/ThreeNum';
 import ExArea3Num from './Containers/MathSection/ThreeNum/ExArea';
+import ChooseTablas from './Containers/MathSection/TablasDeMultiplicar/ChooseTablas';
 
 function App() {
   return (
@@ -33,9 +34,12 @@ function App() {
             <ExArea3Num/>
           </Route>
           <Route exact path="/tablas-de-multiplicar">
+            <ChooseTablas/>
+          </Route>
+          <Route exact path="/tablas-de-multiplicar/:rango">
             <TablasDeMultiplicar/>
           </Route>
-          <Route exact path="/tablas-de-multiplicar/:number">
+          <Route exact path="/tablas-de-multiplicar/:rango/:number">
             <TablaContainer/>
           </Route>
         </Switch>
