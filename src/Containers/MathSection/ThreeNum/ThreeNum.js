@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import LinkButton from '../../StyledComponents/Button/LinkButton'
-import { StyledBackground } from '../../StyledComponents/StyledBackground'
-import InitNavBar from '../NavBarContainer/NavBarContainer'
-import SumIMG from "./sum.png"
-import MinIMG from "./minus.png"
-import DivImg from "./div.png"
-import TimesIMG from "./times.png"
-import CombinadasIMG from "./Combinadas.png"
-import LoadingContainer from '../../Components/LoadingContainer'
+import LoadingContainer from '../../../Components/LoadingContainer'
+import LinkButton from '../../../StyledComponents/Button/LinkButton'
+import { StyledBackground } from '../../../StyledComponents/StyledBackground'
+import InitNavBar from '../../NavBarContainer/NavBarContainer'
+import SumIMG from "../sum.png"
+import MinIMG from "../minus.png"
+import DivImg from "../div.png"
+import TimesIMG from "../times.png"
 
 const Div = styled.div`
 position: relative;
@@ -93,15 +92,9 @@ const Values = [
         dif: "Desde multiplaciones con números de 1 dígito hasta números de 4 dígitos",
         path: "multiplicaciones"
     },
-    {
-        img: DivImg,
-        text: "Divisiones",
-        dif: "Desde multiplaciones con números de 1 dígito hasta números de 4 dígitos",
-        path: "divisiones"
-    },
 ]
 
-const AreaContainer = () => {
+const ThreeNum = () => {
     const [Loading, setLoading] = useState(true)
     useEffect(() => {
         setTimeout(() => {
@@ -110,18 +103,18 @@ const AreaContainer = () => {
     }, [])
     return (
         <div>
+            <InitNavBar isHome={true}/>
             <StyledBackground/>
-            <InitNavBar isHome={true} HomePath="/"/>
             {Loading && <LoadingContainer/>}
             <Div>
-            <h2>Operaciones simples.</h2>
+                <h2>Operaciones con 3 números</h2>
                 <StyledList>
                     {
                        Values && Values.map((data, idx) => {
                         return <StyledArticle key={idx}>
                             <img src={data.img}/>
                             <h3>{data.text}</h3>
-                            <LinkButton path={"/matematica/" + data.path} text="Elegir" fontSize="25px"/>
+                            <LinkButton path={"/operaciones-con-3-numeros/" + data.path} text="Elegir" fontSize="25px"/>
                         </StyledArticle>
                     }) 
                     }
@@ -136,4 +129,4 @@ const AreaContainer = () => {
     )
 }
 
-export default AreaContainer
+export default ThreeNum

@@ -58,7 +58,7 @@ const InitNavBar = ({isHome, isHow, Path, isGoBack}) => {
          </Link>
          <div>
          {
-             isGoBack && <LinkButton text={<i class="fas fa-arrow-left"></i>} path={Path} fontSize="clamp(25px, calc(2vh + 1vw), calc(2vh + 2vw + 10px))" width="75px"/>
+             isGoBack && <LinkButton text={<i className="fas fa-arrow-left"></i>} path={Path} fontSize="clamp(25px, calc(2vh + 1vw), calc(2vh + 2vw + 10px))" width="75px"/>
           }
          {
              isHome && <LinkButton path="/" text="🏠" fontSize="clamp(25px, calc(2vh + 1vw), calc(2vh + 2vw + 10px))" width="80px"/>

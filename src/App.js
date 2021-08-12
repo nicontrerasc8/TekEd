@@ -8,6 +8,8 @@ import { AppContextProvider } from './Context/AppContext';
 import ScrollToTop from './ScrollToTop';
 import TablasDeMultiplicar from './Containers/MathSection/TablasDeMultiplicar/TablasDeMultiplicar';
 import TablaContainer from './Containers/MathSection/TablasDeMultiplicar/TablaContainer';
+import ThreeNum from './Containers/MathSection/ThreeNum/ThreeNum';
+import ExArea3Num from './Containers/MathSection/ThreeNum/ExArea';
 
 function App() {
   return (
@@ -23,6 +25,12 @@ function App() {
           </Route>
           <Route exact path="/matematica/:type">
             <ExAreaContainer/>
+          </Route>
+          <Route exact path="/operaciones-con-3-numeros">
+            <ThreeNum/>
+          </Route>
+          <Route exact path="/operaciones-con-3-numeros/:type">
+            <ExArea3Num/>
           </Route>
           <Route exact path="/tablas-de-multiplicar">
             <TablasDeMultiplicar/>

@@ -92,9 +92,12 @@ button:disabled{
   display: flex;
   flex-wrap: wrap;
   margin-top: 20px;
-  grid-gap: 10px;
+  grid-gap: 20px;
   align-items: center;
   justify-content: center;
+}
+.buttons p{
+  text-align: center;
 }
 .main-ex{
   display: flex;

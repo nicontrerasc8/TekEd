@@ -67,14 +67,19 @@ const SectionData = [
       img:Tablas,
       texto: "Tablas de multiplicar del 1 al 20",
       link: "/tablas-de-multiplicar"
-   }
+   },
+   {
+      img: CombinadasIMG,
+      texto: "Operaciones con 3 números",
+      link: "/operaciones-con-3-numeros",
+   },
 ]
 
 const HomeContainer = () => {
 
    const [Loading, setLoading] = useState(true)
    useEffect(() => {
-      Aos.init({duration :2000, once:true})
+      Aos.init({duration :1000, once:true})
       setTimeout(() => {
          setLoading(false)
       }, 3000);

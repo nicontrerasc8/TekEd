@@ -5,8 +5,8 @@ const Input = ({x, y, Refe, isOut}) => {
 }
 
 const InputArea = ({val, 
-    x1, x2,x3,x4,x5,x6,x7,x8, 
-    y1,y2,y3,y4,y5,y6,y7,y8}) => {
+    x1, x2,x3,x4,x5,x6,x7,x8,x9,x10,x11,x12, 
+    y1,y2,y3,y4,y5,y6,y7,y8,y9,y10,y11,y12}) => {
         const Ref1 = useRef(null)
         const Ref2 = useRef(null)
         const Ref3 = useRef(null)
@@ -15,6 +15,10 @@ const InputArea = ({val,
         const Ref6 = useRef(null)
         const Ref7 = useRef(null)
         const Ref8 = useRef(null)
+        const Ref9 = useRef(null)
+        const Ref10 = useRef(null)
+        const Ref11 = useRef(null)
+        const Ref12 = useRef(null)
         useEffect(() => {
             if (x1 === "") Ref1.current.focus()
             else{
@@ -31,6 +35,18 @@ const InputArea = ({val,
                                     if(x7 === "") Ref7.current.focus()
                                     else{
                                         if (x8 === "") Ref8.current.focus()
+                                        else{
+                                            if(x9 === "") Ref9.current.focus()
+                                            else{
+                                                if(x10 === "") Ref10.current.focus()
+                                                else {
+                                                    if(x11 === "") Ref11.current.focus()
+                                                    else{
+                                                        if(x12 === "") Ref12.current.focus()
+                                                    }
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -38,9 +54,13 @@ const InputArea = ({val,
                     }
                 }
             }
-        }, [x1, x2,x3,x4,x5,x6,x7,x8])
+        }, [x1,x2,x3,x4,x5,x6,x7,x8,x9,x10,x11,x12])
     return (
         <section>
+            <Input x={x12} y={y12} Refe={Ref12} isOut={val < 100000000000}/>
+            <Input x={x11} y={y11} Refe={Ref11} isOut={val < 10000000000}/>
+            <Input x={x10} y={y10} Refe={Ref10} isOut={val < 1000000000}/>
+            <Input x={x9} y={y9} Refe={Ref9} isOut={val < 100000000}/>
             <Input x={x8} y={y8} Refe={Ref8} isOut={val < 10000000}/>
             <Input x={x7} y={y7} Refe={Ref7} isOut={val < 1000000}/>
             <Input x={x6} y={y6} Refe={Ref6} isOut={val < 100000}/>

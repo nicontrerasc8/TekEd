@@ -1,18 +1,16 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { StyledBackground } from '../../StyledComponents/StyledBackground'
-import InitNavBar from '../NavBarContainer/NavBarContainer'
+import { StyledBackground } from '../../../StyledComponents/StyledBackground'
+import InitNavBar from '../../NavBarContainer/NavBarContainer'
 import styled from 'styled-components'
 import { useParams } from 'react-router-dom'
-import useAppContext from '../../Context/AppContext'
-import LoadingContainer from "../../Components/LoadingContainer"
-import LinkButton from '../../StyledComponents/Button/LinkButton'
+import useAppContext from '../../../Context/AppContext'
+import LoadingContainer from "../../../Components/LoadingContainer"
+import LinkButton from '../../../StyledComponents/Button/LinkButton'
 import useKeypress from "react-use-keypress"
-import Check from "./check.png"
-import Wrong from "./wrong.png"
-import InputArea from './InputArea/InputArea'
-import Sum_SubstractSolutionArea from './SolutionsArea/Sum&SubstractSolutionArea'
-import MultiplicationSolutionArea from './SolutionsArea/MultiplicationsSolutionArea'
-import DivisionSolutionArea from './SolutionsArea/DivisionSolutionArea'
+import Check from "../check.png"
+import Wrong from "../wrong.png"
+import InputArea from '../InputArea/InputArea'
+
 
 const Accordeon = styled.div`
 position: relative;
@@ -131,6 +129,7 @@ padding: 20px;
 width: clamp(350px, 40vw, 40vw);
 p{
     font-size: 35px;
+    text-align: center;
     color: gold;
     padding: 0 0 15px 0;
 }
@@ -222,42 +221,88 @@ transition: 1s;
 background-color: #305cae;
 `
 
+
+
 const Info = [
     {
-        fn1: 2,
-        fn2: 1, 
-    },
-    {
-        fn1: 3,
-        fn2: 1, 
-    },
-    {
-        fn1: 4,
-        fn2: 1, 
+        fn1: 1,
+        fn2: 1,
+        fn3: 1,
     },
     {
         fn1: 2,
-        fn2: 2, 
+        fn2: 1,
+        fn3: 1,
     },
     {
         fn1: 3,
-        fn2: 2, 
+        fn2: 1,
+        fn3: 1,
     },
     {
         fn1: 4,
-        fn2: 2, 
+        fn2: 1,
+        fn3: 1,
+    },
+    {
+        fn1: 2,
+        fn2: 2,
+        fn3: 1,
+    },
+    {
+        fn1: 2,
+        fn2: 2,
+        fn3: 2,
     },
     {
         fn1: 3,
-        fn2: 3, 
+        fn2: 2,
+        fn3: 1,
     },
     {
         fn1: 4,
-        fn2: 3, 
+        fn2: 2,
+        fn3: 1,
     },
     {
         fn1: 4,
-        fn2: 4, 
+        fn2: 2,
+        fn3: 2,
+    },
+    {
+        fn1: 3,
+        fn2: 3,
+        fn3: 1,
+    },
+    {
+        fn1: 4,
+        fn2: 3,
+        fn3: 1,
+    },
+    {
+        fn1: 4,
+        fn2: 3,
+        fn3: 2,
+    },
+    {
+        fn1: 4,
+        fn2: 3,
+        fn3: 3,
+    },
+    {
+        fn1: 4,
+        fn2: 4,
+        fn3: 1,
+    },
+    {
+        fn1: 4,
+        fn2: 4,
+        fn3: 2,
+    },
+    {
+        fn1: 4,
+        fn2: 4,
+        fn3: 4,
     },
 ]
 
@@ -276,9 +321,13 @@ const ExContainer = () => {
     const [Value6, setValue6] = useState("")
     const [Value7, setValue7] = useState("")
     const [Value8, setValue8] = useState("")
-    const [Title, setTitle] = useState("")
+    const [Value9, setValue9] = useState("")
+    const [Value10, setValue10] = useState("")
+    const [Value11, setValue11] = useState("")
+    const [Value12, setValue12] = useState("")
     const [valor1, setvalor1] = useState(0)
     const [valor2, setvalor2] = useState(0)
+    const [valor3, setvalor3] = useState(0)
     const [FinalResult, setFinalResult] = useState(0)
     const [ShowResults, setShowResults] = useState(false)
     const [AnsWasCorrect, setAnsWasCorrect] = useState(false)
@@ -286,6 +335,7 @@ const ExContainer = () => {
     const {type} = useParams()
     const [Level, setLevel] = useState(1)
     const [Level2, setLevel2] = useState(1)
+    const [Level3, setLevel3] = useState(1)
     const [ChooseLevel, setChooseLevel] = useState(true)
 
     const addCorrect = () => {
@@ -299,6 +349,10 @@ const ExContainer = () => {
         setValue6("")
         setValue7("")
         setValue8("")
+        setValue9("")
+        setValue10("")
+        setValue11("")
+        setValue12("")
     }
 
     const WasIncorrect = () => {
@@ -311,10 +365,15 @@ const ExContainer = () => {
         setValue6("")
         setValue7("")
         setValue8("")
+        setValue9("")
+        setValue10("")
+        setValue11("")
+        setValue12("")
     }
-    const SetLevel = (param, param2) => {
+    const SetLevel = (param, param2, param3) => {
         setLevel(param)
         setLevel2(param2)
+        setLevel3(param3)
         setChooseLevel(false)
         setLoading(true)
         setTimeout(() => {
@@ -330,7 +389,7 @@ const ExContainer = () => {
         }
         else {
             var response
-            response = Value8 + Value7 + Value6 + Value5 + Value4 + Value3 + Value2 + Value
+            response = Value12 + Value11 + Value10 + Value9 + Value8 + Value7 + Value6 + Value5 + Value4 + Value3 + Value2 + Value
             if(response == FinalResult){
                 setAnsWasCorrect(true)
             }else{
@@ -356,6 +415,10 @@ const ExContainer = () => {
         setValue6("")
         setValue7("")
         setValue8("")
+        setValue9("")
+        setValue10("")
+        setValue11("")
+        setValue12("")
     }
 
     useKeypress(["Enter"],(event) => {
@@ -368,9 +431,10 @@ const ExContainer = () => {
         if(ChooseLevel){
             window.scrollTo(0,0)
         }
-        var v1, v2
+        var v1, v2, v3
         v1 = Math.floor(Math.random() * Math.pow(10, Level) + 1);
         v2 = Math.floor(Math.random() * Math.pow(10, Level2) + 1)
+        v3 = Math.floor(Math.random() * Math.pow(10, Level3) + 1)
         if (Level === 2 && v1 < 10) v1 += 10;
         if (Level === 3 && v1 < 100){
             v1 += 100;
@@ -387,56 +451,45 @@ const ExContainer = () => {
         if (Level2 === 4 && v2 < 1000){
             v2 += 1000;
         }
+        if (Level3 === 2 && v3 < 10){
+            v3 += 10;
+        }
+        if (Level3 === 3 && v3 < 100){
+            v3 += 100;
+        }
+        if (Level3 === 4 && v3 < 1000){
+            v3 += 1000;
+        }
         if(type === "sumas"){ 
-            var result = v1+v2
+            var result = v1+v2+v3
             setOperator("+")
         }
         else if(type === "restas"){
-            if (v1 < v2){
-                var aux = v1;
-                v1 = v2
-                v2 = aux
-            }
-            var result = v1-v2
+                if (v2 < v3){
+                    var auxiliar = v2
+                    v2 = v3
+                    v3 = auxiliar
+                }
+                if (v1 < v2){
+                    var aux = v1;
+                    v1 = v2
+                    v2 = aux
+                }
+                if((v2 + v3) > v1){
+                    v1*=2
+                }
+                var result = v1-v2-v3
             setOperator("-")
         }
         else if(type === "multiplicaciones"){
-            var result = v1*v2
+            var result = v1*v2*v3
             setOperator("x")
-        }
-        else if(type === "divisiones") {
-            setLevel(2)
-            setLevel2(1)
-            do {
-                v1 = Math.floor(Math.random() * (Math.pow(10, Level) - 2) + 2);
-                v2 = Math.floor(Math.random() * (Math.pow(10, Level2) - 2) + 2);
-                if (Level === 2 && v1 < 10) v1 += 10;
-                if (Level === 3 && v1 < 100){
-                    v1 += 100;
-                }
-                if (Level === 4 && v1 < 1000){
-                    v1 += 1000;
-                }
-                if (Level2 === 2 && v2 < 10){
-                    v2 += 10;
-                }
-                if (Level2 === 3 && v2 < 100){
-                    v2 += 100;
-                }
-                if (Level2 === 4 && v2 < 1000){
-                    v2 += 1000;
-                }
-            } while (v1 % v2 != 0 || v2/2 % 2 != 0);
-                if (v1 === v2){
-                    v2 = v1/2
-                }
-            var result = v1/v2
-            setOperator("÷")
         }
         setvalor1(v1)
         setvalor2(v2)
+        setvalor3(v3)
         setFinalResult(result)
-    }, [CounterCorrect, Level, Level2, type])
+    }, [CounterCorrect, Level, Level2, Level3, type])
 
 
     return <div className="math-ex">
@@ -444,55 +497,25 @@ const ExContainer = () => {
             {
                 Loading && <LoadingContainer/>
             }
-            <SolutionBox isIn={ShowSolution}>
-                {
-                    (type === "sumas" || type === "restas") && <Sum_SubstractSolutionArea x={valor1} y={valor2} operator={Operator} type={type} Result={FinalResult} fnOut={SolutionOut}/>
-                } 
-                {
-                    type === "multiplicaciones" && <MultiplicationSolutionArea x={valor1} y={valor2} Result={FinalResult} fnOut={SolutionOut}/> 
-                }
-                {
-                    type === "divisiones" && <DivisionSolutionArea x={valor1} y={valor2} Result={FinalResult} fnOut={SolutionOut}/>
-                }
-            </SolutionBox>
        <ResultsBox className={ShowResults ? "active-results" : "results"}>
                <div>
                    <img src={AnsWasCorrect ? Check : Wrong}/>
                <h3>{AnsWasCorrect ? "¡Respuesta correcta!" : "¡Sigue intentando!"}</h3>
                {
-                   AnsWasCorrect && <h4>{valor1} {Operator} {valor2} = {FinalResult}</h4>
+                   AnsWasCorrect && <h4>{valor1} {Operator} {valor2} {Operator} {valor3} = {FinalResult}</h4>
                }
                <button onClick={AnsWasCorrect ? addCorrect : WasIncorrect}>{AnsWasCorrect ? "Siguiente ejercicio" : "Intenta de nuevo"}</button>
-               {
-                   !AnsWasCorrect && <button onClick={AvSolution} style={{marginTop:"20px", background:"white", color:"#305cae"}}>
-                       Aprende a resolverlo
-                    </button>
-               }
                 </div>
            </ResultsBox>
            <Accordeon>
-           <LinkButton path={"/matematica/" + type} text="Elige la dificultad" callback={() => setChooseLevel(!ChooseLevel)}/>
+           <LinkButton path={"/operaciones-con-3-numeros/" + type} text="Elige la dificultad" callback={() => setChooseLevel(!ChooseLevel)}/>
           {
               ChooseLevel &&  <article className="buttons">
-                 {
-                     Operator != "÷" &&  <button onClick={() => SetLevel(1,1)}>
-                     <div>
-                       <span>8</span>
-                       <span>{Operator}&#160;2</span>
-                     </div>
-                     <p>
-                          1 cifra&#160; 
-                           {Operator}
-                           &#160;1 cifra
-                          </p>
-                 </button>
-                 }
               {
                   Info && Info.map((data, idx) => {
                       return <button key={idx}
-                      onClick={() => SetLevel(data.fn1, data.fn2)} >
-                          {
-                              Operator != "÷" ? <div>
+                      onClick={() => SetLevel(data.fn1, data.fn2, data.fn3)} >
+                           <div>
                               <span>
                                   {data.fn1 === 1 && 8} 
                                   {data.fn1 === 2 && 54} 
@@ -500,30 +523,25 @@ const ExContainer = () => {
                                   {data.fn1 === 4 && 3264}
                             </span>
                           <span>
-                                  {Operator}&#160;
                                   {data.fn2 === 1 && 6} 
                                   {data.fn2 === 2 && 32} 
                                   {data.fn2 === 3 && 464}
                                   {data.fn2 === 4 && 7427}
                           </span>
-                            </div> : <section>
-                                <span style={{marginTop: "10px"}}>
-                                {data.fn1 === 1 && 8} 
-                                  {data.fn1 === 2 && 54} 
-                                  {data.fn1 === 3 && 820}
-                                  {data.fn1 === 4 && 3264}
-                                </span> 
-                                <Span>{data.fn2 === 1 && 6} 
-                                {data.fn2 === 2 && 32} 
-                                {data.fn2 === 3 && 464}
-                                {data.fn2 === 4 && 7427}
-                                </Span>
-                                </section>
-                          }
+                          <span>
+                                {Operator}&#160;
+                                {data.fn3 === 1 && 4} 
+                                {data.fn3 === 2 && 89} 
+                                {data.fn3 === 3 && 782}
+                                {data.fn3 === 4 && 1382}
+                          </span>
+                            </div> 
                           <p>
                           {data.fn1} cifra{data.fn1 > 1 ? "s " : " "} 
                            {Operator}
-                           &#160;{data.fn2} cifra{data.fn2 > 1 && "s "}
+                           &#160;{data.fn2} cifra{data.fn2 > 1 && "s "}<br/>
+                           &#160;{Operator} 
+                           &#160; {data.fn3} cifra{data.fn3 > 1 && "s "}
                           </p>
                       </button>
                   })
@@ -536,14 +554,9 @@ const ExContainer = () => {
                {
                    CounterCorrect > 0 && <p><i className="fas fa-medal"></i> x {CounterCorrect} </p>
                }
-
-           {
-               Operator != "÷" ? <article>
-                   <span>{valor1}</span> <span>{Operator} {valor2}</span>
-               </article> : <section className="division-section">
-                   <span>{valor1}</span> <Span>{valor2}</Span>
-               </section>
-           }
+              <article>
+                   <span>{valor1}</span><span>{valor2}</span><span>{Operator} {valor3}</span>
+               </article> 
            <InputArea val={FinalResult} 
             x1={Value}
             x2={Value2}
@@ -553,6 +566,11 @@ const ExContainer = () => {
             x6={Value6}
             x7={Value7}
             x8={Value8}
+            x9={Value9}
+            x10={Value10}
+            x11={Value11}
+            x12={Value12}
+
             y1={setValue}
             y2={setValue2}
             y3={setValue3}
@@ -561,6 +579,10 @@ const ExContainer = () => {
             y6={setValue6}
             y7={setValue7}
             y8={setValue8}
+            y9={setValue9}
+            y10={setValue10}
+            y11={setValue11}
+            y12={setValue12}
            />
            <Button onClick={CheckAnswer}>
                Comprobar
@@ -570,17 +592,15 @@ const ExContainer = () => {
     </div>
 }
 
-const ExAreaContainer = () => {
+const ExArea3Num = () => {
     useEffect(() => {
         window.scrollTo(0,0)
     }, [])
-    return (
-        <div>
+    return <div>
+            <InitNavBar isHome={true} isGoBack={true} Path="/operaciones-con-3-numeros"/>
             <StyledBackground/>
-            <InitNavBar isGoBack={true} Path="/matematica" isHome={true}/>
             <ExContainer/>
         </div>
-    )
 }
 
-export default ExAreaContainer
+export default ExArea3Num
