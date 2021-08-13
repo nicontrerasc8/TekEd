@@ -214,6 +214,7 @@ const TablaContainer = () => {
     const [Value, setValue] = useState("")
     const [Value2, setValue2] = useState("")
     const [Value3, setValue3] = useState("")
+    const [Value4, setValue4] = useState("")
 
     const [ShowPractice, setShowPractice] = useState(true)
     const [ShowTable, setShowTable] = useState(false)
@@ -227,12 +228,14 @@ const TablaContainer = () => {
         setValue("")
         setValue2("")
         setValue3("")
+        setValue4("")
     }
     const WasIncorrect = () => {
         setShowResults(false)
         setValue("")
         setValue2("")
         setValue3("")
+        setValue4("")
     }
     const AvSolution = () => {
         setShowSolution(true)
@@ -268,6 +271,7 @@ const TablaContainer = () => {
         setValue("")
         setValue2("")
         setValue3("")
+        setValue4("")
     }
     const ChangeShowValues = () => {
         setShowPractice(!ShowPractice)
@@ -321,9 +325,11 @@ const TablaContainer = () => {
                             x1={Value}
                             x2={Value2}
                             x3={Value3}
+                            x4={Value4}
                             y1={setValue}
                             y2={setValue2}
                             y3={setValue3}
+                            y4={setValue4}
                             val={Z} 
                             />
                         <button onClick={CheckAnswer}>Comprobar</button>

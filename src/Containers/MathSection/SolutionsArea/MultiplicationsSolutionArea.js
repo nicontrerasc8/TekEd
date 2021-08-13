@@ -158,7 +158,7 @@ const MultiplicationSolutionArea = ({x, y, Result, fnOut}) => {
            }
            {
                ShowZ2 && <span>
-               {y >= 10 && y < 100 && " +"}{Z2}
+               {y >= 10 && y < 100 && " +"}{Z2 / 10}<strong>0</strong>
            </span> 
            }
            {
@@ -168,7 +168,7 @@ const MultiplicationSolutionArea = ({x, y, Result, fnOut}) => {
            }
            {
                 ShowZ3 && <span>
-               {y >= 100 && y < 1000 && " +"}{Z3}
+               {y >= 100 && y < 1000 && " +"}{Z3 / 10}<strong>0</strong>
            </span> 
            }
            {
@@ -179,7 +179,7 @@ const MultiplicationSolutionArea = ({x, y, Result, fnOut}) => {
            
            {
                ShowZ4 && <span>
-               {y >= 1000 && y < 10000 && " +"}{Z4}
+               {y >= 1000 && y < 10000 && " +"}{Z4/10}<strong>0</strong>
            </span> 
            }
            {
