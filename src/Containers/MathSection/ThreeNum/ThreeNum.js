@@ -126,8 +126,8 @@ const ThreeNum = () => {
                 <StyledList>
                     {
                        Values && Values.map((data, idx) => {
-                        return <Link to={"/operaciones-con-3-numeros/" + data.path}>
-                             <StyledArticle key={idx}>
+                        return <Link to={"/operaciones-con-3-numeros/" + data.path} key={idx}>
+                             <StyledArticle>
                             <img src={data.img}/>
                             <h3>{data.text}</h3>
                             <span>Elegir</span>
