@@ -133,8 +133,8 @@ const AreaContainer = () => {
                 <StyledList>
                     {
                        Values && Values.map((data, idx) => {
-                        return <Link to={"/operaciones-simples/" + data.path}>
-                            <StyledArticle key={idx}>
+                        return <Link to={"/operaciones-simples/" + data.path} key={idx}>
+                            <StyledArticle >
                                 <img src={data.img}/>
                                 <h3>{data.text}</h3>
                                 <span>Elegir</span>

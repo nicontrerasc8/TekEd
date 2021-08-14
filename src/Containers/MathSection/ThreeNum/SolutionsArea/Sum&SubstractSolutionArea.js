@@ -29,7 +29,7 @@ const Space = () => {
     return <em style={{marginRight: "5px"}}>&#160;&#160;</em>
 }
 
-const Sum_SubstractSolutionArea = ({x, y, is3Num, type, operator, Result, fnOut}) => {
+const Sum_SubstractSolutionArea = ({x, y, z, type, operator, Result, fnOut}) => {
 
     const [counter, setcounter] = useState(1)
     const [X1, setX1] = useState("")
@@ -40,6 +40,10 @@ const Sum_SubstractSolutionArea = ({x, y, is3Num, type, operator, Result, fnOut}
     const [Y2, setY2] = useState("")
     const [Y3, setY3] = useState("")
     const [Y4, setY4] = useState("")
+    const [W1, setW1] = useState("")
+    const [W2, setW2] = useState("")
+    const [W3, setW3] = useState("")
+    const [W4, setW4] = useState("")
     const [Z1, setZ1] = useState("")
     const [Z2, setZ2] = useState("")
     const [Z3, setZ3] = useState("")
@@ -85,48 +89,68 @@ const Sum_SubstractSolutionArea = ({x, y, is3Num, type, operator, Result, fnOut}
         else if (Result >= 10000 && Result < 100000) setMax(6) 
         var x1 = x%10
         var y1 = y%10
+        var w1 = z%10
         var x2 = (x%100 - x1) / 10
         var y2 = (y%100 - y1) / 10
+        var w2 = (z%100 - w1) / 10
         var x3 = Math.floor((x%1000) / 100)
         var y3 = Math.floor((y%1000) / 100)
+        var w3 = Math.floor((z%1000) / 100)
         var x4 = Math.floor((x%10000) / 1000)
         var y4 = Math.floor((y%10000) / 1000)
+        var w4 = Math.floor((z%10000) / 1000)
         var z5 = 0
         var a1 = 0
         var a2 = 0
         var a3 = 0
         var a4 = 0
         if (type === "sumas") {
-            var z1 = x1 + y1
-            var z2 = x2 + y2
-            var z3 = x3 + y3
-            var z4 = x4 + y4
+            var z1 = x1 + y1 + w1
+            var z2 = x2 + y2 + w2
+            var z3 = x3 + y3 + w3
+            var z4 = x4 + y4 + w4
             if (z1 >= 10 && z1 < 20) {
                 z1 -= 10
                 z2 += 1
                 ++a1
+            }else if(z1 >= 20){
+                z1 -= 20
+                z2 += 2
+                a1+=2
             }
             if (z2 >= 10 && z2 < 20){
                 z2 -= 10
                 z3 += 1
                 ++a2
+            }else if(z2 >= 20){
+                z2 -= 20
+                z3 += 2
+                a2+=2
             }
             if (z3 >= 10 && z3 < 20) {
                 z3 -= 10
                 z4 += 1
                 ++a3
+            }else if(z3 >= 20){
+                z3 -= 20
+                z4 += 2
+                a3+=2
             }
             if (z4 >= 10 && z4 < 20){
                 z4 -= 10
                 z5 += 1
                 ++a4
+            }else if(z4 >= 20){
+                z4 -= 20
+                z5 += 2
+                a4+=2
             }
         }
         else if (type === "restas") {
-            var z1 = x1 - y1
-            var z2 = x2 - y2
-            var z3 = x3 - y3
-            var z4 = x4 - y4
+            var z1 = x1 - y1 - w1
+            var z2 = x2 - y2 - w2
+            var z3 = x3 - y3 - w3
+            var z4 = x4 - y4 - w4
             if (z1 < 0) {
                 z1 += 10
                 z2 -= 1
@@ -155,6 +179,10 @@ const Sum_SubstractSolutionArea = ({x, y, is3Num, type, operator, Result, fnOut}
         setY2(y2)
         setY3(y3)
         setY4(y4)
+        setW1(w1)
+        setW2(w2)
+        setW3(w3)
+        setW4(w4)
         setZ1(z1)
         setZ2(z2)
         setZ3(z3)
@@ -164,7 +192,7 @@ const Sum_SubstractSolutionArea = ({x, y, is3Num, type, operator, Result, fnOut}
         setA2(a2)
         setA3(a3)
         setA4(a4)
-    }, [x, y, Result, operator])
+    }, [x, y, z, Result, operator])
 
     return <Div>
             <article>
@@ -182,11 +210,18 @@ const Sum_SubstractSolutionArea = ({x, y, is3Num, type, operator, Result, fnOut}
                 </span>
                 <br/>
                 <span>
-                    {operator}
                     {Y4 != 0 && Y4}
                     {(Y3 != 0 || Y4 != 0) && Y3}
                     {(Y2 != 0 || Y3 != 0 || Y4 != 0) && Y2}
                     {Y1}
+                </span>
+                <br/>
+                <span>
+                    {operator}
+                    {W4 != 0 && W4}
+                    {(W3 != 0 || W4 != 0) && W3}
+                    {(W2 != 0 || W3 != 0 || W4 != 0) && W2}
+                    {W1}
                 </span>
             </article>
             {

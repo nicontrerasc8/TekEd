@@ -135,11 +135,6 @@ const ThreeNum = () => {
                         </Link>
                     }) 
                     }
-                    {/* <StyledArticle>
-                            <img src={CombinadasIMG}/>
-                            <h3>Operaciones combinadas</h3>
-                            <LinkButton path="/operaciones-simples/operaciones-combinadas" text="Elegir" fontSize="25px"/>
-                    </StyledArticle> */}
                 </StyledList>
             </Div>
         </div>

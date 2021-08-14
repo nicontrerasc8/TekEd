@@ -10,6 +10,8 @@ import useKeypress from "react-use-keypress"
 import Check from "../check.png"
 import Wrong from "../wrong.png"
 import InputArea from '../InputArea/InputArea'
+import Sum_SubstractSolutionArea from './SolutionsArea/Sum&SubstractSolutionArea'
+import MultiplicationSolutionArea from './SolutionsArea/MultiplicationsSolutionArea'
 
 
 const Accordeon = styled.div`
@@ -497,6 +499,14 @@ const ExContainer = () => {
             {
                 Loading && <LoadingContainer/>
             }
+            <SolutionBox isIn={ShowSolution}>
+                {
+                    (type === "sumas" || type === "restas") && <Sum_SubstractSolutionArea x={valor1} y={valor2} z={valor3} operator={Operator} type={type} Result={FinalResult} fnOut={SolutionOut}/>
+                } 
+                {
+                    type === "multiplicaciones" && <MultiplicationSolutionArea x={valor1} y={valor2} v={valor3} Result={FinalResult} fnOut={SolutionOut}/> 
+                }
+            </SolutionBox>
        <ResultsBox className={ShowResults ? "active-results" : "results"}>
                <div>
                    <img src={AnsWasCorrect ? Check : Wrong}/>
@@ -505,6 +515,11 @@ const ExContainer = () => {
                    AnsWasCorrect && <h4>{valor1} {Operator} {valor2} {Operator} {valor3} = {FinalResult}</h4>
                }
                <button onClick={AnsWasCorrect ? addCorrect : WasIncorrect}>{AnsWasCorrect ? "Siguiente ejercicio" : "Intenta de nuevo"}</button>
+               {
+                   !AnsWasCorrect && <button onClick={AvSolution} style={{marginTop:"20px", background:"white", color:"#305cae"}}>
+                       Aprende a resolverlo
+                    </button>
+               }
                 </div>
            </ResultsBox>
            <Accordeon>
