@@ -4,18 +4,19 @@ import styled from 'styled-components'
 const Div = styled.div`
 display: flex;
 flex-direction: column;
-text-align: right;
-font-size: clamp(45px, calc(3vw+3vh), calc(3vw+3vh));
+align-items: center;
+justify-content: center;
+padding: 20px 5vw;
+font-size: clamp(45px, calc(2vw + 3vh), calc(2vw + 3vh));
 article{
-    border-bottom: 3px solid;
-text-align: right;
+    text-align: right;
 }
 div{
     padding-right: 8px;
     color: #b6fbfb;
 }
-span{
-    text-align: right;
+abbr{
+    text-align:right;
 }
 button{
     margin-top: 20px;
@@ -24,12 +25,26 @@ button{
     border-radius: 5px;
     font-size: 25px;
 }
+samp{
+    color: gold;
+    font-weight: 600;
+}
+section{
+    text-align: center;
+    border: 3px solid #b6fbfb;
+    background: #274C90;
+    border-radius: 5px;
+    font-family: "Carter one", cursive;
+    font-size: clamp(25px, calc(1vw + 2vh + calc(1rem/2)), calc(1vw + 2vh));
+    padding: 10px;
+    margin-bottom: 1rem;
+}
 `   
 const Space = () => {
     return <em style={{marginRight: "5px"}}>&#160;&#160;</em>
 }
 
-const Sum_SubstractSolutionArea = ({x, y, is3Num, type, operator, Result, fnOut}) => {
+const Sum_SubstractSolutionArea = ({x, y, type, operator, Result, fnOut}) => {
 
     const [counter, setcounter] = useState(1)
     const [X1, setX1] = useState("")
@@ -167,6 +182,92 @@ const Sum_SubstractSolutionArea = ({x, y, is3Num, type, operator, Result, fnOut}
     }, [x, y, Result, operator])
 
     return <Div>
+        {
+            operator === "sumas" && <section>
+            {counter === 1 && <abbr>
+                Presiona el botón <span>ver solución</span>.
+                </abbr>}
+            {counter === 2 && 
+            <abbr>En primer lugar, sumamos&#160;
+                <samp>
+                    {X1}
+                </samp> con&#160;
+                <samp>
+                    {Y1}
+                </samp> y nos da&#160;
+                <samp>
+                    {X1 + Y1}
+                </samp>. {
+                    (X1 + Y1) >= 10 && <samp><br/>Abajo escribimos {Z1} y llevamos 1.</samp>
+                }
+            </abbr>
+            }
+            {counter === 3 && 
+            <abbr>Luego, sumamos&#160;
+                <samp>
+                    {X2}
+                </samp> con &#160;
+                <samp>
+                    {Y2}
+                </samp> y nos da
+                <samp>
+                &#160;{X2 + Y2}&#160;
+                </samp>
+                {
+                    A1 === 1 && <samp>y le sumamos el 1 que llevamos</samp>
+                }. &#160;
+                {
+                    (X2 + Y2) >= 10 && <samp><br/>Abajo escribimos {Z2} y llevamos 1.</samp> 
+                }
+            </abbr>
+            }
+            {
+                counter === 4 && <abbr>
+                    Ahora, sumamos&#160;
+                    <samp>
+                    {X3}
+                </samp> con &#160;
+                <samp>
+                    {Y3}
+                </samp> y nos da
+                <samp>
+                &#160;{X3 + Y3}&#160;
+                </samp>
+                {
+                    A2 === 1 && <samp>y le sumamos el 1 que llevamos</samp>
+                }. &#160;
+                {
+                    (X3 + Y3) >= 10 && <samp><br/>Abajo escribimos {Z3} y llevamos 1.</samp>
+                }
+                </abbr>
+            }
+            {
+                counter === 5 && <abbr>
+                    Ahora, sumamos&#160;
+                    <samp>
+                    {X4}
+                </samp> con &#160;
+                <samp>
+                    {Y4}
+                </samp> y nos da
+                <samp>
+                &#160;{X4 + Y4}
+                </samp>
+                {
+                    A3 === 1 && <samp>y le sumamos el 1 que llevamos</samp>
+                }. &#160;
+                {
+                    (X4 + Y4) >= 10 && <samp><br/>Abajo escribimos {Z4} y llevamos 1.</samp>
+                }
+                </abbr>
+            }
+            {
+                counter === 6 && <abbr>
+                    Ahora colocamos el <samp>1</samp> que llevamos abajo. 
+                </abbr>
+            }
+        </section>
+        }
             <article>
                     <div>
                         {(ShowZ4 && A4 != 0) ? A4 : <Space/>}
@@ -175,22 +276,24 @@ const Sum_SubstractSolutionArea = ({x, y, is3Num, type, operator, Result, fnOut}
                         {(ShowZ1 && A1 != 0) ? A1 : <Space/>}&#160;&#160;
                     </div>
                 <span>
+                    
                     {X4 != 0 && X4}
                     {(X3 != 0 || X4 != 0) && X3}
                     {(X2 != 0 || X3 != 0 || X4 != 0) && X2}
                     {X1}
                 </span>
                 <br/>
-                <span>
+                <span style={{borderBottom:"3px solid", width:"100%"}}>
+                &#160;&#160;
                     {operator}
                     {Y4 != 0 && Y4}
                     {(Y3 != 0 || Y4 != 0) && Y3}
                     {(Y2 != 0 || Y3 != 0 || Y4 != 0) && Y2}
                     {Y1}
                 </span>
-            </article>
-            {
-                ShowZ1 ? <span>
+                <br style={{height:"30px"}}/>
+                {
+                ShowZ1 ? <abbr>
                 {
                     ShowZ5 && Z5 != 0 && Z5
                 }
@@ -198,14 +301,15 @@ const Sum_SubstractSolutionArea = ({x, y, is3Num, type, operator, Result, fnOut}
                 {ShowZ3 && (Z5 != 0 || Z4 != 0 || Z3 != 0) && Z3}
                 {ShowZ2 && (Z5 != 0 || Z4 != 0 || Z3 != 0 || Z2 != 0) && Z2}
                 {ShowZ1 && Z1}
-            </span> : 
+            </abbr> : 
             <span><Space/></span>
             }
+            </article>
             {
                 counter < Max ?
                 <button onClick={() => siguientePaso(counter)} className={counter === 1 ? "start-finish-btn" : "next-btn"}>{counter === 1 ? "Ver solución" : "Siguiente"}</button> 
                  : 
-                 <button onClick={Finish} className="start-finish-btn">Volver</button>
+                <button onClick={Finish} className="start-finish-btn">Volver</button>
             }
         </Div>
 }
