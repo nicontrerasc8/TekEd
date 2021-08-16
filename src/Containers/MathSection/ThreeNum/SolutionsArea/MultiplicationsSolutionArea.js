@@ -116,29 +116,12 @@ const MultiplicationSolutionArea = ({x, y, v,Result, fnOut}) => {
        var z2 = x * y2 * 10
        var z3 = x * y3 * 100
        var z4 = x * y4 * 1000
-       var z5 = 0
        var totalZ = z1+z2+z3+z4
        var r1 = totalZ * v
        console.log(r1)
        var r2 = totalZ * v
        var r3 = totalZ * v
        var r4 = totalZ * v
-       if (z1 >= 10 && z1 < 20) {
-           z1 -= 10
-           z2 += 1
-       }
-       if (z2 >= 10 && z2 < 20){
-           z2 -= 10
-           z3 += 1
-           }
-       if (z3 >= 10 && z3 < 20) {
-           z3 -= 10
-           z4 += 1
-           }
-       if (z4 >= 10 && z4 < 20){
-           z4 -= 10
-           z5 += 1
-          }
        setX(x)
        setV(v)
        setY1(y1)

@@ -99,22 +99,6 @@ const MultiplicationSolutionArea = ({x, y, Result, fnOut}) => {
        var z3 = x * y3 * 100
        var z4 = x * y4 * 1000
        var z5 = 0
-       if (z1 >= 10 && z1 < 20 && y >= 10) {
-           z1 -= 10
-           z2 += 1
-       }
-       if (z2 >= 10 && z2 < 20 && y >= 100){
-           z2 -= 10
-           z3 += 1
-           }
-       if (z3 >= 10 && z3 < 20 && y >= 1000) {
-           z3 -= 10
-           z4 += 1
-           }
-       if (z4 >= 10 && z4 < 20 && y >= 10000){
-           z4 -= 10
-           z5 += 1
-          }
        setX(x)
        setY1(y1)
        setY2(y2)
