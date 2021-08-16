@@ -55,7 +55,10 @@ const MultiplicationSolutionArea = ({x, y, Result, fnOut}) => {
    const [Max, setMax] = useState(0)
  
    const siguientePaso = (num) => {
-       if (num == 1) setShowZ1(true)
+       if (num == 1) {
+        setShowZ1(true)
+        console.log(Z1)
+       }
        if (num == 2){
         setShowZ2(true)
        }
@@ -96,19 +99,19 @@ const MultiplicationSolutionArea = ({x, y, Result, fnOut}) => {
        var z3 = x * y3 * 100
        var z4 = x * y4 * 1000
        var z5 = 0
-       if (z1 >= 10 && z1 < 20) {
+       if (z1 >= 10 && z1 < 20 && y >= 10) {
            z1 -= 10
            z2 += 1
        }
-       if (z2 >= 10 && z2 < 20){
+       if (z2 >= 10 && z2 < 20 && y >= 100){
            z2 -= 10
            z3 += 1
            }
-       if (z3 >= 10 && z3 < 20) {
+       if (z3 >= 10 && z3 < 20 && y >= 1000) {
            z3 -= 10
            z4 += 1
            }
-       if (z4 >= 10 && z4 < 20){
+       if (z4 >= 10 && z4 < 20 && y >= 10000){
            z4 -= 10
            z5 += 1
           }
@@ -126,7 +129,7 @@ const MultiplicationSolutionArea = ({x, y, Result, fnOut}) => {
        else if (y >= 10 && y < 100) setMax(2)   
        else if (y >= 100 && y < 1000) setMax(3)
        else if (y >= 1000 && y < 10000) setMax(4)
-       else setMax(8)
+       else setMax(5)
    }, [x, y, Result, type])
  
    return <Div>
