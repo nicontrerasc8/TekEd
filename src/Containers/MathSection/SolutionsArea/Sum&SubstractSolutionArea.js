@@ -188,7 +188,7 @@ const Sum_SubstractSolutionArea = ({x, y, type, operator, Result, fnOut}) => {
                 Presiona el botón <samp>ver solución</samp>.
                 </abbr>}
             {counter === 2 && 
-            <abbr>En primer lugar, sumamos&#160;
+            <abbr>Sumamos&#160;
                 <samp>
                     {X1}
                 </samp> con&#160;
